@@ -231,15 +231,21 @@
             color: #5d4037;
         }
         
-        /* Sección de Equipo */
+        /* Sección de Equipo - REDISEÑADA */
         .team {
             background-color: #f5f5f5;
         }
         
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        @media (min-width: 900px) {
+             .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         
         .team-member {
@@ -249,6 +255,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s;
             text-align: center;
+            position: relative;
         }
         
         .team-member:hover {
@@ -260,21 +267,86 @@
             height: 250px;
             background-size: cover;
             background-position: center;
+            position: relative;
+        }
+        
+        .team-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
         }
         
         .team-info {
-            padding: 20px;
+            padding: 25px 20px;
+            position: relative;
         }
         
         .team-info h3 {
             color: #5d4037;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
         
         .team-role {
             color: #c62828;
-            font-style: italic;
+            font-weight: 600;
             margin-bottom: 15px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .team-role::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background-color: #c62828;
+        }
+        
+        .team-info p {
+            color: #5d4037;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #f9f5f0;
+            color: #5d4037;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background-color: #c62828;
+            color: white;
+            transform: translateY(-3px);
         }
         
         /* Sección de Valores */
@@ -284,8 +356,14 @@
         
         .values-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        @media (min-width: 769px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         .value-card {
@@ -458,6 +536,14 @@
                 width: 80px;
                 height: 80px;
             }
+            
+            .team-info h3 {
+                font-size: 20px;
+            }
+            
+            .team-role {
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -531,41 +617,87 @@
         </div>
     </section>
 
-    <!-- Sección de Equipo -->
+    <!-- Sección de Equipo - REDISEÑADA -->
     <section class="team">
         <div class="container">
             <h2 class="section-title">Nuestro Equipo</h2>
             <div class="team-grid">
                 <div class="team-member">
-                    <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1583394293214-28ded15ee548?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Abel');"></div>
                     <div class="team-info">
-                        <h3>Elena Martínez</h3>
-                        <p class="team-role">Chef Ejecutiva & Co-Fundadora</p>
-                        <p>Con más de 20 años de experiencia en cocinas de Europa y Asia, Elena es la visionaria detrás de nuestra propuesta umami.</p>
+                        <h3>Abel Espinoza</h3>
+                        <span class="team-role">Saucier-Tourant</span>
+                        <p>Experto en salsas y encargado de cubrir las diferentes estaciones de la cocina.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="far fa-envelope"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="team-member">
-                    <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Nathaly');"></div>
                     <div class="team-info">
-                        <h3>Carlos Ruiz</h3>
-                        <p class="team-role">Director de Sala & Co-Fundador</p>
-                        <p>Experto en maridajes y experiencias gastronómicas, Carlos asegura que cada visita al Club sea memorable.</p>
+                        <h3>Nathaly Ramírez</h3>
+                        <span class="team-role">Garde Manger-Entremetier</span>
+                        <p>Responsable de los platos fríos y los entrantes. Aporta creatividad y precisión a cada plato.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="far fa-envelope"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="team-member">
-                    <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1566554273541-37a9ca77b91f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Yenifer');"></div>
                     <div class="team-info">
-                        <h3>Ana Takahashi</h3>
-                        <p class="team-role">Jefa de Investigación Umami</p>
-                        <p>Especialista en sabores japoneses, Ana fusiona técnicas tradicionales con innovación culinaria.</p>
+                        <h3>Yenifer Ramírez</h3>
+                        <span class="team-role">Patissier</span>
+                        <p>Maestra de la repostería y encargada de crear los postres más exquisitos.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="far fa-envelope"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="team-member">
-                    <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Elian');"></div>
                     <div class="team-info">
-                        <h3>Miguel Ángel Ortega</h3>
-                        <p class="team-role">Sumiller Principal</p>
-                        <p>Con un paladar excepcional, Miguel Ángel crea maridajes que elevan cada platillo a una experiencia sensorial completa.</p>
+                        <h3>Elian Servita</h3>
+                        <span class="team-role">Sommelier-Steward</span>
+                        <p>Conocedor de vinos y bebidas, además de encargado del servicio en sala.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="far fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Jahnays');"></div>
+                    <div class="team-info">
+                        <h3>Jahnays Sánchez</h3>
+                        <span class="team-role">Chef Ejecutivo</span>
+                        <p>Líder del equipo, su visión y experiencia guían cada creación culinaria.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="far fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Camila');"></div>
+                    <div class="team-info">
+                        <h3>Camila Palacios</h3>
+                        <span class="team-role">Sous-Chef</span>
+                        <p>La mano derecha del chef, asegura que la cocina funcione a la perfección.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="far fa-envelope"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
