@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club VIP - El Club Umami</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5; /* Gris claro de fondo */
+            color: #5d4037; /* Marrón oscuro para texto principal */
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Encabezado */
+        header {
+            background-color: #ffffff; /* Blanco para el header */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #c62828; /* Rojo oscuro para el logo */
+        }
+        
+        .logo span {
+            color: #5d4037; /* Marrón oscuro */
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #5d4037; /* Marrón oscuro */
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #c62828; /* Rojo oscuro al hacer hover */
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            color: #5d4037; /* Marrón oscuro */
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #388e3c; /* Verde para el contador */
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        /* Sección VIP */
+        .vip-welcome {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        
+        .vip-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
+        .vip-subtitle {
+            font-size: 24px;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .vip-benefits {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .benefit-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .benefit-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #c62828;
+        }
+        
+        .benefit-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #5d4037;
+        }
+        
+        .benefit-description {
+            color: #795548;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #424242; /* Gris oscuro */
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #c62828; /* Rojo oscuro */
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #e0e0e0; /* Gris claro */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #c62828; /* Rojo oscuro */
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #c62828; /* Rojo oscuro */
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #616161; /* Gris medio */
+            color: #bdbdbd; /* Gris claro */
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 10px;
+            }
+            
+            .vip-title {
+                font-size: 36px;
+            }
+            
+            .vip-subtitle {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">El Club <span>Umami</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Menú</a></li>
+                        <li><a href="#">Experiencias</a></li>
+                        <li><a href="#">Club VIP</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cart-icon">
+                    🛒
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de Bienvenida VIP -->
+    <section class="vip-welcome">
+        <div class="container">
+            <h1 class="vip-title">Bienvenido al Club VIP</h1>
+            <p class="vip-subtitle">Disfruta de experiencias gastronómicas exclusivas, beneficios especiales y eventos privados reservados únicamente para nuestros miembros más selectos.</p>
+        </div>
+    </section>
+
+    <!-- Beneficios VIP -->
+    <section class="vip-benefits">
+        <div class="container">
+            <h2 class="section-title">Beneficios Exclusivos</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎁</div>
+                    <h3 class="benefit-title">Descuentos Exclusivos</h3>
+                    <p class="benefit-description">Disfruta de un 15% de descuento en todos nuestros platillos y bebidas, además de promociones especiales mensuales.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⭐</div>
+                    <h3 class="benefit-title">Eventos Privados</h3>
+                    <p class="benefit-description">Acceso prioritario a cenas de degustación, eventos con chefs invitados y experiencias culinarias únicas.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">👨‍🍳</div>
+                    <h3 class="benefit-title">Reservas Preferentes</h3>
+                    <p class="benefit-description">Reserva preferente en fechas especiales y acceso a nuestra mesa del chef con vista a la cocina.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🍷</div>
+                    <h3 class="benefit-title">Catas Exclusivas</h3>
+                    <p class="benefit-description">Participa en catas de vinos y maridajes especiales dirigidos por nuestro sommelier experto.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎂</div>
+                    <h3 class="benefit-title">Regalo de Cumpleaños</h3>
+                    <p class="benefit-description">Celebra tu cumpleaños con nosotros y recibe un postre especial y una botella de vino de cortesía.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💝</div>
+                    <h3 class="benefit-title">Invitaciones Especiales</h3>
+                    <p class="benefit-description">Invitaciones para dos personas a nuestros lanzamientos de menú de temporada y eventos especiales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>El Club Umami</h3>
+                    <p>Donde el quinto sabor se convierte en una experiencia.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Explorar</h3>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Menú</a></li>
+                        <li><a href="#">Experiencias</a></li>
+                        <li><a href="#">Club VIP</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Dirección: Av. Umami 123, Madrid</li>
+                        <li>Teléfono: +34 919 876 543</li>
+                        <li>Email: experiencia@clubumami.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Horario</h3>
+                    <ul>
+                        <li>Lunes a Jueves: 13:00 - 23:30</li>
+                        <li>Viernes y Sábados: 13:00 - 00:30</li>
+                        <li>Domingos: 13:00 - 22:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 El Club Umami. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

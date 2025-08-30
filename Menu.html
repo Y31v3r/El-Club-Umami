@@ -1,0 +1,620 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Club Umami - Menú Gastronómico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #5d4037;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Encabezado */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #c62828;
+        }
+        
+        .logo span {
+            color: #5d4037;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #5d4037;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #c62828;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            color: #5d4037;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #388e3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #c62828;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #b71c1c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
+        }
+        
+        /* Sección de Categorías */
+        .categories {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            color: #5d4037;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: #c62828;
+            margin: 15px auto 0;
+        }
+        
+        .categories-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            background-color: white;
+            border: 2px solid #c62828;
+            color: #c62828;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: #c62828;
+            color: white;
+        }
+        
+        /* Sección de Menú */
+        .menu-section {
+            padding: 60px 0;
+            background-color: #eeeeee;
+        }
+        
+        .menu-category {
+            margin-bottom: 60px;
+        }
+        
+        .menu-category-title {
+            font-size: 28px;
+            color: #5d4037;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #c62828;
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-item-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .menu-item-info {
+            padding: 20px;
+        }
+        
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .menu-item-title {
+            font-size: 18px;
+            color: #5d4037;
+        }
+        
+        .menu-item-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #c62828;
+        }
+        
+        .menu-item-description {
+            color: #795548;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .pairing-note {
+            background-color: #f9f5f0;
+            padding: 10px;
+            border-left: 3px solid #c62828;
+            margin-bottom: 15px;
+            font-size: 13px;
+            font-style: italic;
+        }
+        
+        .menu-item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .add-to-cart {
+            background-color: #388e3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #2e7d32;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #424242;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #c62828;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #c62828;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #c62828;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #616161;
+            color: #bdbdbd;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 10px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .categories-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 200px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">El Club <span>Umami</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Menú</a></li>
+                        <li><a href="#">Experiencias</a></li>
+                        <li><a href="#">Club VIP</a></li>
+                        <li><a href="#">Quiénes Somos</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cart-icon">
+                    🛒
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Nuestro Menú Umami</h1>
+            <p>Descubre el quinto sabor en cada uno de nuestros platillos</p>
+        </div>
+    </section>
+
+    <!-- Sección de Categorías -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Categorías</h2>
+            <div class="categories-nav">
+                <button class="category-btn active" data-category="entradas">Entradas</button>
+                <button class="category-btn" data-category="platos-fuertes">Platos Fuertes</button>
+                <button class="category-btn" data-category="postres">Postres</button>
+                <button class="category-btn" data-category="bebidas">Bebidas</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Menú -->
+    <section class="menu-section">
+        <div class="container">
+            <!-- Categoría: Entradas -->
+            <div class="menu-category" id="entradas">
+                <h3 class="menu-category-title">Entradas</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1552332386-f8b00d24f4d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Tostadas de Tinga de Pollo</h4>
+                                <span class="menu-item-price">€12.90</span>
+                            </div>
+                            <p class="menu-item-description">Tostadas de maíz con base de frijoles refritos, tinga de pollo deshebrado en salsa de jitomate y chipotle, decoradas con lechuga, queso y crema.</p>
+                            <div class="menu-item-footer">
+                                <button class="add-to-cart">Añadir al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoría: Platos Fuertes -->
+            <div class="menu-category" id="platos-fuertes" style="display: none;">
+                <h3 class="menu-category-title">Platos Fuertes</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Saltimbocca a la Romana</h4>
+                                <span class="menu-item-price">€24.50</span>
+                            </div>
+                            <p class="menu-item-description">Finas rebanadas de ternera cubiertas con prosciutto y una hoja de salvia, cocinadas en mantequilla y vino blanco. Acompañado de vegetales de temporada.</p>
+                            <div class="menu-item-footer">
+                                <button class="add-to-cart">Añadir al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoría: Postres -->
+            <div class="menu-category" id="postres" style="display: none;">
+                <h3 class="menu-category-title">Postres</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Verrine de Fruits Rouges</h4>
+                                <span class="menu-item-price">€9.80</span>
+                            </div>
+                            <p class="menu-item-description">Postre servido en vaso con capas de mousse de queso blanco, coulis de frutos rojos y base de galleta triturada. Una explosión de texturas y sabores.</p>
+                            <div class="menu-item-footer">
+                                <button class="add-to-cart">Añadir al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoría: Bebidas -->
+            <div class="menu-category" id="bebidas" style="display: none;">
+                <h3 class="menu-category-title">Bebidas</h3>
+                <div class="menu-items">
+                    <!-- Bebida para Entrada -->
+                    <div class="menu-item">
+                        <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1536935338788-846bb9981813?ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80');"></div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Coctel de Papelón con Ron y Limón</h4>
+                                <span class="menu-item-price">€8.50</span>
+                            </div>
+                            <p class="menu-item-description">Base dulce de papelón disuelto en agua con notas terrosas, mezclado con zumo de limón y ron venezolano. Servido frío.</p>
+                            <div class="pairing-note">
+                                Maridaje: La acidez del limón limpia el paladar de las notas grasas y especiadas del chipotle en la tinga.
+                            </div>
+                            <div class="menu-item-footer">
+                                <button class="add-to-cart">Añadir al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bebida para Principal -->
+                    <div class="menu-item">
+                        <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80');"></div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Yuzu Highball</h4>
+                                <span class="menu-item-price">€10.90</span>
+                            </div>
+                            <p class="menu-item-description">Coctel refrescante a base de whisky mezclado con soda y yuzu, un cítrico japonés con notas de limón y mandarina.</p>
+                            <div class="pairing-note">
+                                Maridaje: La acidez intensa del yuzu es un excelente contrapunto a la salinidad y riqueza del prosciutto y la mantequilla del saltimbocca.
+                            </div>
+                            <div class="menu-item-footer">
+                                <button class="add-to-cart">Añadir al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bebida para Postre -->
+                    <div class="menu-item">
+                        <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80');"></div>
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Rebujito</h4>
+                                <span class="menu-item-price">€7.90</span>
+                            </div>
+                            <p class="menu-item-description">Mezcla refrescante de vino de jerez con soda de limón y hojas de menta. Ligero y herbal.</p>
+                            <div class="pairing-note">
+                                Maridaje: Un excelente puente entre los sabores salados del plato principal y la dulzura del postre.
+                            </div>
+                            <div class="menu-item-footer">
+                                <button class="add-to-cart">Añadir al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>El Club Umami</h3>
+                    <p>Donde el quinto sabor se convierte en una experiencia.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Explorar</h3>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Menú</a></li>
+                        <li><a href="#">Experiencias</a></li>
+                        <li><a href="#">Club VIP</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Dirección: Av. Umami 123, Madrid</li>
+                        <li>Teléfono: +34 919 876 543</li>
+                        <li>Email: experiencia@clubumami.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Horario</h3>
+                    <ul>
+                        <li>Lunes a Jueves: 13:00 - 23:30</li>
+                        <li>Viernes y Sábados: 13:00 - 00:30</li>
+                        <li>Domingos: 13:00 - 22:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 El Club Umami. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Funcionalidad para filtrar categorías
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const menuCategories = document.querySelectorAll('.menu-category');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Quitar clase active de todos los botones
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    // Añadir clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    // Ocultar todas las categorías
+                    menuCategories.forEach(cat => {
+                        cat.style.display = 'none';
+                    });
+                    
+                    // Mostrar solo la categoría seleccionada
+                    document.getElementById(category).style.display = 'block';
+                });
+            });
+            
+            // Mostrar solo la categoría activa al cargar la página
+            document.querySelector('.category-btn.active').click();
+        });
+    </script>
+</body>
+</html>

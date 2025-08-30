@@ -1,0 +1,624 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Club Umami - Quiénes Somos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #5d4037;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Encabezado */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #c62828;
+        }
+        
+        .logo span {
+            color: #5d4037;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #5d4037;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #c62828;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            color: #5d4037;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #388e3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #c62828;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #b71c1c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
+        }
+        
+        /* Sección Quiénes Somos */
+        .about-us {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            color: #5d4037;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: #c62828;
+            margin: 15px auto 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #5d4037;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #795548;
+        }
+        
+        /* Nueva sección de Misión */
+        .mission-section {
+            margin-top: 80px;
+            text-align: center;
+        }
+        
+        .mission-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .mission-icon {
+            font-size: 50px;
+            color: #c62828;
+            margin-bottom: 20px;
+        }
+        
+        .mission-content p {
+            font-size: 18px;
+            color: #795548;
+            line-height: 1.8;
+        }
+        
+        /* Nueva sección de Visión */
+        .vision-section {
+            margin-top: 80px;
+            text-align: center;
+        }
+        
+        .vision-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .vision-icon {
+            font-size: 50px;
+            color: #c62828;
+            margin-bottom: 20px;
+        }
+        
+        .vision-content p {
+            font-size: 18px;
+            color: #795548;
+            line-height: 1.8;
+        }
+        
+        .team-section {
+            margin-top: 80px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-member {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .team-info {
+            padding: 20px;
+        }
+        
+        .team-info h3 {
+            margin-bottom: 10px;
+            color: #5d4037;
+        }
+        
+        .team-info p {
+            color: #795548;
+            font-size: 16px;
+        }
+        
+        .values-section {
+            margin-top: 80px;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .value-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 380px;
+            justify-content: space-between;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-icon {
+            font-size: 50px;
+            color: #c62828;
+            margin-bottom: 25px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .value-card h3 {
+            margin-bottom: 20px;
+            color: #5d4037;
+            font-size: 22px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .value-card p {
+            color: #795548;
+            line-height: 1.6;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #424242;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #c62828;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #c62828;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #c62828;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #616161;
+            color: #bdbdbd;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 10px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .mission-content, .vision-content {
+                padding: 30px 20px;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .value-card {
+                min-height: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">El Club <span>Umami</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Menú</a></li>
+                        <li><a href="#">Experiencias</a></li>
+                        <li><a href="#">Club VIP</a></li>
+                        <li><a href="#">Quiénes Somos</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cart-icon">
+                    🛒
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Nuestra Historia</h1>
+            <p>Descubre la pasión y el compromiso detrás de El Club Umami</p>
+        </div>
+    </section>
+
+    <!-- Sección Quiénes Somos -->
+    <section class="about-us">
+        <div class="container">
+            <h2 class="section-title">Quiénes Somos</h2>
+            
+            <div class="about-content">
+                <div class="about-img" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                <div class="about-text">
+                    <h2>El Club Umami</h2>
+                    
+                    <p>Nuestro proyecto nace de dar a conocer la combinación de los 5 principales sabores de la gastronomía: el ácido, el dulce, el amargo, el salado y el umami, que es el complemento que realza y equilibra estos sabores. Nos encargamos de que cada plato, especialmente aquellos poco conocidos, resalte algunos de estos sabores, ya que somos un club para los curiosos y los aventureros del paladar.</p>
+                    
+                    <p>El Club Umami se creó con la finalidad de ser un explorador de la gastronomía, tanto de la alta cocina como de la comida casera y callejera que, a menudo, no recibe el reconocimiento que merece. El objetivo es desenterrar, documentar y celebrar estos platos que son el corazón de una cultura, pero que son desconocidos para la mayoría del mundo.</p>
+                    
+                    <p>La idea es conectar con nuestros comensales a través de las historias y los sabores que definen a una comunidad, demostrándoles que detrás de cada país siempre hay un platillo con una variedad de sabores que los diferencia, saliendo un poco de lo común.</p>
+                    
+                    <p>Umami, que en japonés significa "sabor sabroso", es el hilo conductor que une todas nuestras creaciones, diseñadas para proporcionar una experiencia gastronómica profunda y memorable.</p>
+                </div>
+            </div>
+            
+            <div class="values-section">
+                <h2 class="section-title">Nuestros Valores</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">🌍</div>
+                        <h3>Autenticidad cultural</h3>
+                        <p>Cada plato que ofrecemos refleja la cultura, historia y sabores de su lugar de origen, ofreciendo una experiencia gastronómica que va más allá del simple acto de comer, es también un viaje cultural.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🔍</div>
+                        <h3>Curiosidad y descubrimiento</h3>
+                        <p>Invitamos a los comensales que buscan algo más que la cocina convencional a explorar platos poco conocidos, salir de su zona de confort y descubrir sabores, texturas y combinaciones que jamás pensaron que existirían.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">✨</div>
+                        <h3>Excelencia en los detalles</h3>
+                        <p>Cada plato es una obra maestra en sí misma, desde la selección de ingredientes frescos y de alta calidad hasta la presentación final, garantizando que cada bocado sea una experiencia memorable.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">❤️</div>
+                        <h3>Conexión humana</h3>
+                        <p>La comida tiene el poder de conectar a las personas. Al compartir platos de diferentes culturas, creamos un puente entre nuestra cocina y las historias de quienes la crearon, fomentando un ambiente de aprendizaje y conversación.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección de Misión -->
+            <div class="mission-section">
+                <h2 class="section-title">Nuestra Misión</h2>
+                <div class="mission-content">
+                    <div class="mission-icon">🌟</div>
+                    <p>Cautivar a nuestros clientes con platillos desconocidos del mundo, promoviendo la diversidad y riqueza de las gastronomías globales. Buscamos no solo ofrecer una experiencia culinaria única e inolvidable, sino también educar y sensibilizar a nuestros comensales sobre la historia, cultura y tradiciones detrás de cada platillo.</p>
+                </div>
+            </div>
+            
+            <!-- Nueva sección de Visión -->
+            <div class="vision-section">
+                <h2 class="section-title">Nuestra Visión</h2>
+                <div class="vision-content">
+                    <div class="vision-icon">👁️</div>
+                    <p>Ser un referente en la promoción de la diversidad gastronómica a nivel global, donde cada platillo desconocido se convierta en una celebración de la cultura y tradición de su origen. Queremos ser un espacio de descubrimiento y conexión, donde nuestros clientes no solo disfruten de una experiencia culinaria, sino que también se sumerjan en un viaje que enriquezca su conocimiento y amor por la gastronomía.</p>
+                </div>
+            </div>
+            
+            <div class="team-section">
+                <h2 class="section-title">Nuestro Equipo</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1583394293214-28ded15ee548?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="team-info">
+                            <h3>Elena Martínez</h3>
+                            <p>Chef Ejecutiva y Co-fundadora</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="team-info">
+                            <h3>Carlos Rodríguez</h3>
+                            <p>Jefe de Cocina y Co-fundador</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1566554273541-37a9ca77b91f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="team-info">
+                            <h3>María López</h3>
+                            <p>Sumiller y Directora de Experiencias</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="team-info">
+                            <h3>Javier García</h3>
+                            <p>Pastelero Ejecutivo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>El Club Umami</h3>
+                    <p>Donde el quinto sabor se convierte en una experiencia.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Explorar</h3>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Menú</a></li>
+                        <li><a href="#">Experiencias</a></li>
+                        <li><a href="#">Club VIP</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Dirección: Av. Umami 123, Madrid</li>
+                        <li>Teléfono: +34 919 876 543</li>
+                        <li>Email: experiencia@clubumami.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Horario</h3>
+                    <ul>
+                        <li>Lunes a Jueves: 13:00 - 23:30</li>
+                        <li>Viernes y Sábados: 13:00 - 00:30</li>
+                        <li>Domingos: 13:00 - 22:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 El Club Umami. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

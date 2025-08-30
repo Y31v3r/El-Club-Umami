@@ -1,0 +1,621 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiencias - El Club Umami</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #5d4037;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Encabezado */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #c62828;
+        }
+        
+        .logo span {
+            color: #5d4037;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #5d4037;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #c62828;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            color: #5d4037;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #388e3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        /* Sección de Bienvenida */
+        .experiences-welcome {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        
+        .experiences-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
+        .experiences-subtitle {
+            font-size: 24px;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Sección de Reseñas */
+        .reviews-section {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .review-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #5d4037;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #c62828;
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .rating {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            direction: rtl; /* Para que las estrellas aparezcan de derecha a izquierda y el hover funcione correctamente */
+            justify-content: flex-end; /* Alinear a la derecha para que la primera estrella sea 1 */
+        }
+        
+        .rating input {
+            display: none;
+        }
+        
+        .rating label {
+            font-size: 30px;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .rating input:checked ~ label {
+            color: #ffc107;
+        }
+        
+        .rating label:hover,
+        .rating label:hover ~ label {
+            color: #ffc107;
+        }
+        
+        .submit-btn {
+            background-color: #c62828;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 30px auto 0;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #b71c1c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
+        }
+        
+        /* Estilos para el mensaje de éxito */
+        #success-message-container {
+            display: none; /* Oculto por defecto */
+            text-align: center;
+            padding: 60px 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #success-message-container h2 {
+            color: #388e3c; /* Verde para el éxito */
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        #success-message-container p {
+            font-size: 18px;
+            color: #5d4037;
+        }
+
+        /* Animación de la palomita (checkmark) */
+        .checkmark-circle {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            stroke-width: 5;
+            stroke: #388e3c; /* Verde para la palomita */
+            fill: none;
+            margin: 0 auto 30px;
+            animation: scaleCheckmark 0.6s ease-in-out;
+        }
+
+        .checkmark-circle circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 5;
+            stroke-miterlimit: 10;
+            stroke: #388e3c;
+            fill: none;
+            animation: strokeCheckmark 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark-circle .checkmark {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: strokeCheckmark 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; /* Retraso para que aparezca después del círculo */
+        }
+
+        @keyframes strokeCheckmark {
+            100% { stroke-dashoffset: 0; }
+        }
+
+        @keyframes scaleCheckmark {
+            0%, 100% { transform: none; }
+            50% { transform: scale3d(1.1, 1.1, 1); }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #424242;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #c62828;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #c62828;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #c62828;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #616161;
+            color: #bdbdbd;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 10px;
+            }
+            
+            .experiences-title {
+                font-size: 36px;
+            }
+            
+            .experiences-subtitle {
+                font-size: 18px;
+            }
+            
+            .review-form, #success-message-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">El Club <span>Umami</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Menú</a></li>
+                        <li><a href="#">Experiencias</a></li>
+                        <li><a href="#">Club VIP</a></li>
+                        <li><a href="#">¿Quiénes Somos?</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cart-icon">
+                    🛒
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de Bienvenida -->
+    <section class="experiences-welcome">
+        <div class="container">
+            <h1 class="experiences-title">Nuestras Experiencias</h1>
+            <p class="experiences-subtitle">Cada visita al Club Umami es una aventura culinaria única. Queremos conocer tu opinión sobre nuestro servicio, los platos que disfrutaste y cómo fue tu experiencia en general.</p>
+        </div>
+    </section>
+
+    <!-- Sección de Reseñas -->
+    <section class="reviews-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 50px; font-size: 36px; color: #5d4037; position: relative;">
+                Comparte tu Experiencia
+                <span style="content: ''; display: block; width: 80px; height: 3px; background-color: #c62828; margin: 15px auto 0;"></span>
+            </h2>
+            
+            <div class="review-form" id="review-form-container">
+                <form id="experience-form">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="visit-date">Fecha de tu visita</label>
+                        <input type="date" id="visit-date" name="visit-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Califica tu experiencia</label>
+                        <div class="rating">
+                            <input type="radio" id="star5" name="rating" value="5">
+                            <label for="star5">★</label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4">★</label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3">★</label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2">★</label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1">★</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dishes">¿Qué platos probaste? (selecciona todos los que aplican)</label>
+                        <select id="dishes" name="dishes" multiple size="5">
+                            <option value="bruschetta">Bruschetta Umami</option>
+                            <option value="risotto">Risotto de Champiñones Umami</option>
+                            <option value="salmon">Salmón Umami</option>
+                            <option value="pasta">Pasta Trufada Umami</option>
+                            <option value="tiramisu">Tiramisú Umami</option>
+                            <option value="coctel">Cóctel Umami</option>
+                            <option value="otro">Otro (especifica en el comentario)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">¿Cómo calificarías nuestro servicio?</label>
+                        <select id="service" name="service" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="excelente">Excelente</option>
+                            <option value="muy-bueno">Muy bueno</option>
+                            <option value="bueno">Bueno</option>
+                            <option value="regular">Regular</option>
+                            <option value="deficiente">Deficiente</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comments">Cuéntanos más sobre tu experiencia</label>
+                        <textarea id="comments" name="comments" placeholder="Describe cómo fue el trato, qué te parecieron los platos, el ambiente, y cualquier sugerencia que tengas para mejorar..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Enviar Reseña</button>
+                </form>
+            </div>
+
+            <!-- Mensaje de éxito (inicialmente oculto) -->
+            <div id="success-message-container">
+                <svg class="checkmark-circle" viewBox="0 0 52 52">
+                    <circle cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+                <h2>¡Gracias por tu reseña!</h2>
+                <p>Tu opinión es muy valiosa para nosotros y nos ayuda a mejorar.</p>
+                <p>Puedes ver todas las reseñas en nuestra <a href="Reseñas.html" style="color: #c62828; text-decoration: none; font-weight: bold;">página de reseñas</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>El Club Umami</h3>
+                    <p>Donde el quinto sabor se convierte en una experiencia.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Explorar</h3>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Menú</a></li>
+                        <li><a href="#">Experiencias</a></li>
+                        <li><a href="#">Club VIP</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Dirección: Av. Umami 123, Madrid</li>
+                        <li>Teléfono: +34 919 876 543</li>
+                        <li>Email: experiencia@clubumami.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Horario</h3>
+                    <ul>
+                        <li>Lunes a Jueves: 13:00 - 23:30</li>
+                        <li>Viernes y Sábados: 13:00 - 00:30</li>
+                        <li>Domingos: 13:00 - 22:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 El Club Umami. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        // Importa las funciones necesarias de los SDKs de Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+        // Tu configuración de Firebase
+        const firebaseConfig = {
+          apiKey: "AIzaSyAmcgLJ9AuftU7AATUQ5UHgtc142USdL9g",
+          authDomain: "umami-f6cc1.firebaseapp.com",
+          projectId: "umami-f6cc1",
+          storageBucket: "umami-f6cc1.firebasestorage.app",
+          messagingSenderId: "498079873032",
+          appId: "1:498079873032:web:2b8c0b3e8f24484fa8f9bd"
+        };
+
+        // Inicializa Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const formContainer = document.getElementById('review-form-container');
+            const experienceForm = document.getElementById('experience-form');
+            const successMessageContainer = document.getElementById('success-message-container');
+            
+            experienceForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Recopila los datos del formulario
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const visitDate = document.getElementById('visit-date').value;
+                // Asegúrate de obtener el valor del radio button seleccionado
+                const ratingInput = document.querySelector('input[name="rating"]:checked');
+                const rating = ratingInput ? ratingInput.value : null; 
+                
+                const dishesSelect = document.getElementById('dishes');
+                const selectedDishes = Array.from(dishesSelect.selectedOptions).map(option => option.value);
+                const service = document.getElementById('service').value;
+                const comments = document.getElementById('comments').value;
+
+                // Validación básica
+                if (!name || !email || !visitDate || !rating || !service || !comments) {
+                    alert('Por favor, completa todos los campos requeridos y selecciona una calificación.');
+                    return;
+                }
+
+                // Deshabilitar el botón de envío para evitar múltiples envíos
+                const submitBtn = experienceForm.querySelector('.submit-btn');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Enviando...';
+
+                try {
+                    // Añade un nuevo documento a la colección 'reviews' en Firestore
+                    await addDoc(collection(db, "reviews"), {
+                        reviewerName: name,
+                        reviewerEmail: email, 
+                        visitDate: visitDate, 
+                        rating: parseInt(rating), // Asegúrate de que la calificación sea un número
+                        dishes: selectedDishes,
+                        serviceQuality: service,
+                        reviewContent: comments,
+                        timestamp: serverTimestamp() // Usa el timestamp del servidor para ordenar por fecha
+                    });
+                    
+                    // Ocultar el formulario y mostrar el mensaje de éxito
+                    formContainer.style.display = 'none';
+                    successMessageContainer.style.display = 'block';
+
+                    // Opcionalmente, puedes restablecer el formulario después de un tiempo si quieres
+                    // setTimeout(() => {
+                    //     experienceForm.reset();
+                    //     submitBtn.disabled = false;
+                    //     submitBtn.textContent = 'Enviar Reseña';
+                    //     successMessageContainer.style.display = 'none';
+                    //     formContainer.style.display = 'block';
+                    // }, 5000); // Muestra el mensaje por 5 segundos
+                    
+                } catch (e) {
+                    console.error("Error al añadir el documento: ", e);
+                    alert('Hubo un error al enviar tu reseña. Por favor, inténtalo de nuevo.');
+                    submitBtn.disabled = false; // Re-habilitar el botón si hay un error
+                    submitBtn.textContent = 'Enviar Reseña';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
