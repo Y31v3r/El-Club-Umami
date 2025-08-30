@@ -191,6 +191,13 @@
             line-height: 1.8;
         }
         
+        .intro-content h3 {
+            font-size: 24px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: #c62828;
+        }
+        
         /* Sección de Misión y Visión */
         .mission-vision {
             background-color: #fff;
@@ -231,7 +238,7 @@
             color: #5d4037;
         }
         
-        /* Sección de Equipo - REDISEÑADA */
+        /* Sección de Equipo */
         .team {
             background-color: #f5f5f5;
         }
@@ -239,9 +246,11 @@
         .team-grid {
             display: grid;
             gap: 30px;
+            /* Se ha ajustado para una simetría perfecta con 3 columnas en pantallas grandes */
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         }
 
+        /* Se ha agregado una media query para que en desktop se muestre una cuadrícula de 3x2 */
         @media (min-width: 900px) {
              .team-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -255,7 +264,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s;
             text-align: center;
-            position: relative;
         }
         
         .team-member:hover {
@@ -267,86 +275,21 @@
             height: 250px;
             background-size: cover;
             background-position: center;
-            position: relative;
-        }
-        
-        .team-img::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40%;
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
         }
         
         .team-info {
-            padding: 25px 20px;
-            position: relative;
+            padding: 20px;
         }
         
         .team-info h3 {
             color: #5d4037;
-            margin-bottom: 8px;
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            margin-bottom: 5px;
         }
         
         .team-role {
             color: #c62828;
-            font-weight: 600;
+            font-style: italic;
             margin-bottom: 15px;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: block;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .team-role::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 2px;
-            background-color: #c62828;
-        }
-        
-        .team-info p {
-            color: #5d4037;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-top: 15px;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: #f9f5f0;
-            color: #5d4037;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        
-        .social-links a:hover {
-            background-color: #c62828;
-            color: white;
-            transform: translateY(-3px);
         }
         
         /* Sección de Valores */
@@ -357,9 +300,11 @@
         .values-grid {
             display: grid;
             gap: 30px;
+            /* Se ha ajustado para una simetría perfecta con 2 columnas */
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
 
+        /* Se ha agregado una media query para que en desktop se muestre una cuadrícula de 2x2 */
         @media (min-width: 769px) {
             .values-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -536,14 +481,6 @@
                 width: 80px;
                 height: 80px;
             }
-            
-            .team-info h3 {
-                font-size: 20px;
-            }
-            
-            .team-role {
-                font-size: 13px;
-            }
         }
     </style>
 </head>
@@ -580,9 +517,12 @@
         <div class="container">
             <h2 class="section-title">Bienvenidos al Club Umami</h2>
             <div class="intro-content">
-                <p>En el corazón de la ciudad, nace un espacio donde los sentidos despiertan y el paladar descubre una nueva dimensión. El Club Umami es más que un restaurante; es un santuario para los amantes del buen comer, un lugar donde cada platillo cuenta una historia y cada sabor evoca una emoción.</p>
-                <p>Fundado en 2010 por un grupo de apasionados chefs y sommeliers, nuestro club rinde homenaje al quinto sabor básico: el umami, ese gusto profundo y sabroso que realza y equilibra cada creación culinaria.</p>
-                <p>Te invitamos a formar parte de nuestra familia, a explorar los límites de tu paladar y a vivir experiencias gastronómicas que transformarán tu manera de entender la comida.</p>
+                <p>El proyecto le club umami se creó con la finalidad de ser un explorador de la gastronomía, tanto de la alta alta cocina como de la comida casera y callejera que, a menudo, no recibe el reconocimiento que merece. El objetivo es desenterrar, documentar y celebrar estos platos que son el corazón de una cultura, pero que son desconocidos para la mayoría del mundo. La idea es conectar con nuestros comensales a través de las historias y los sabores que definen a una comunidad, dándoles a demostrar que detrás de cada país siempre tiene un platillo con una variedad de sabores que los diferencian saliendo un poco de lo común.</p>
+                <h3>¿Quiénes somos?</h3>
+                <p>En Le Club Umami somos un grupo de apasionados de la gastronomía que cree en el poder de la comida para conectar a las personas y contar historias. Nuestro equipo, compuesto por cocineros creativos, expertos en sabores y amantes de la cultura culinaria, se dedica a llevar a nuestros comensales en un viaje único a través de platillos no tan conocidos de todo el mundo. </p>
+                <p>Le Club Umami es más que un servicio de comida; es una puerta de entrada a un mundo de sabores inexplorados. Valoramos la diversidad y fomentamos un ambiente donde todos son bienvenidos a explorar y disfrutar. Cada plato que creamos es una pieza de la gastronomía global, desde un estofado especiado de África Occidental hasta un delicado plato de Asia oriental, cada bocado se convierte en una aventura y cada visita es un nuevo descubrimiento. Bienvenidos a Umami, donde el sabor es un lenguaje universal que nos conecta con otras culturas y con nosotros mismos.</p>
+                <h3>¿Cómo nace?</h3>
+                <p>Le club umami nace de dar a conocer la combinación de los 5 principales sabores de la gastronomía que son el acido, el dulce, el amargo,el salado y el umami ya que es el complemento que realzar y equilibra estos sabores. nos encargamos en que cada platos poco conocidos resalte algunos de estos sabores ya que somos un club para los curiosos y los aventureros del paladar.</p>
             </div>
         </div>
     </section>
@@ -617,87 +557,58 @@
         </div>
     </section>
 
-    <!-- Sección de Equipo - REDISEÑADA -->
+    <!-- Sección de Equipo -->
     <section class="team">
         <div class="container">
             <h2 class="section-title">Nuestro Equipo</h2>
             <div class="team-grid">
+                <!-- Se han agregado los nuevos miembros del equipo -->
                 <div class="team-member">
                     <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Abel');"></div>
                     <div class="team-info">
                         <h3>Abel Espinoza</h3>
-                        <span class="team-role">Saucier-Tourant</span>
+                        <p class="team-role">Saucier-Tourant</p>
                         <p>Experto en salsas y encargado de cubrir las diferentes estaciones de la cocina.</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="far fa-envelope"></i></a>
-                        </div>
                     </div>
                 </div>
                 <div class="team-member">
                     <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Nathaly');"></div>
                     <div class="team-info">
                         <h3>Nathaly Ramírez</h3>
-                        <span class="team-role">Garde Manger-Entremetier</span>
+                        <p class="team-role">Gade Manger-Entremetier</p>
                         <p>Responsable de los platos fríos y los entrantes. Aporta creatividad y precisión a cada plato.</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="far fa-envelope"></i></a>
-                        </div>
                     </div>
                 </div>
                 <div class="team-member">
                     <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Yenifer');"></div>
                     <div class="team-info">
                         <h3>Yenifer Ramírez</h3>
-                        <span class="team-role">Patissier</span>
+                        <p class="team-role">Patissier</p>
                         <p>Maestra de la repostería y encargada de crear los postres más exquisitos.</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="far fa-envelope"></i></a>
-                        </div>
                     </div>
                 </div>
                 <div class="team-member">
                     <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Elian');"></div>
                     <div class="team-info">
                         <h3>Elian Servita</h3>
-                        <span class="team-role">Sommelier-Steward</span>
+                        <p class="team-role">Sommelier-Stewart</p>
                         <p>Conocedor de vinos y bebidas, además de encargado del servicio en sala.</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="far fa-envelope"></i></a>
-                        </div>
                     </div>
                 </div>
                 <div class="team-member">
                     <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Jahnays');"></div>
                     <div class="team-info">
                         <h3>Jahnays Sánchez</h3>
-                        <span class="team-role">Chef Ejecutivo</span>
+                        <p class="team-role">Chef</p>
                         <p>Líder del equipo, su visión y experiencia guían cada creación culinaria.</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="far fa-envelope"></i></a>
-                        </div>
                     </div>
                 </div>
                 <div class="team-member">
                     <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Camila');"></div>
                     <div class="team-info">
                         <h3>Camila Palacios</h3>
-                        <span class="team-role">Sous-Chef</span>
+                        <p class="team-role">Sous-Chef</p>
                         <p>La mano derecha del chef, asegura que la cocina funcione a la perfección.</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="far fa-envelope"></i></a>
-                        </div>
                     </div>
                 </div>
             </div>
