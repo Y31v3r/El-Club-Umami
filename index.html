@@ -191,70 +191,6 @@
             line-height: 1.8;
         }
         
-        /* Sección de Historia */
-        .history {
-            background-color: #f5f5f5;
-        }
-        
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .timeline:before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            width: 2px;
-            height: 100%;
-            background: #c62828;
-            transform: translateX(-50%);
-        }
-        
-        .timeline-item {
-            padding: 20px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            padding-right: 70px;
-            text-align: right;
-        }
-        
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            padding-left: 70px;
-        }
-        
-        .timeline-content {
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .timeline-item:after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #c62828;
-            border-radius: 50%;
-            top: 30px;
-        }
-        
-        .timeline-item:nth-child(odd):after {
-            right: -10px;
-        }
-        
-        .timeline-item:nth-child(even):after {
-            left: -10px;
-        }
-        
         /* Sección de Misión y Visión */
         .mission-vision {
             background-color: #fff;
@@ -278,10 +214,16 @@
             text-align: center;
         }
         
-        .mv-card i {
-            font-size: 40px;
-            color: #c62828;
-            margin-bottom: 20px;
+        .mv-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%);
+            color: white;
         }
         
         .mv-card h3 {
@@ -342,32 +284,53 @@
         
         .values-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
         
         .value-card {
             background: #f9f5f0;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .value-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
         }
         
-        .value-card i {
-            font-size: 40px;
-            color: #c62828;
-            margin-bottom: 20px;
+        .value-icon {
+            width: 90px;
+            height: 90px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover .value-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, #b71c1c 0%, #8e0000 100%);
         }
         
         .value-card h3 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            color: #5d4037;
+            font-size: 22px;
+        }
+        
+        .value-card p {
+            line-height: 1.7;
             color: #5d4037;
         }
         
@@ -475,29 +438,25 @@
                 font-size: 36px;
             }
             
-            .timeline:before {
-                left: 30px;
+            .cta .btn {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+                max-width: 250px;
             }
             
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 0;
-                text-align: left !important;
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
             
-            .timeline-item:nth-child(odd) {
-                left: 0;
-                padding-right: 0;
+            .value-card {
+                padding: 30px 20px;
             }
             
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-            
-            .timeline-item:nth-child(odd):after,
-            .timeline-item:nth-child(even):after {
-                left: 20px;
+            .value-icon {
+                width: 80px;
+                height: 80px;
             }
         }
     </style>
@@ -542,59 +501,31 @@
         </div>
     </section>
 
-    <!-- Sección de Historia -->
-    <section class="history">
-        <div class="container">
-            <h2 class="section-title">Nuestra Historia</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2010</h3>
-                        <p>Fundación del Club Umami por los chefs Elena Martínez y Carlos Ruiz, con la visión de crear un espacio dedicado a la exploración del quinto sabor.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2012</h3>
-                        <p>Primera expansión con la inauguración de nuestro espacio de eventos y catas, permitiendo experiencias gastronómicas más íntimas y personalizadas.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2015</h3>
-                        <p>Reconocimiento con la estrella Michelin, validando nuestra propuesta innovadora y la excelencia en cada uno de nuestros platillos.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2018</h3>
-                        <p>Lanzamiento del programa Club VIP, creando una comunidad de foodies apasionados con acceso a eventos exclusivos y experiencias culinarias únicas.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>2023</h3>
-                        <p>Expansión internacional con la apertura de nuestra primera sede en Tokio, conectando las tradiciones culinarias japonesas con la cocina mediterránea.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Sección de Misión y Visión -->
     <section class="mission-vision">
         <div class="container">
             <h2 class="section-title">Misión y Visión</h2>
             <div class="mv-container">
                 <div class="mv-card">
-                    <i class="fas fa-bullseye"></i>
+                    <div class="mv-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                    </div>
                     <h3>Misión</h3>
-                    <p>Revolucionar la experiencia gastronómica mediante la exploración del sabor umami, utilizando ingredientes de la más alta calidad y técnicas innovadoras que honran las tradiciones culinarias mientras creamos nuevas fronteras de sabor.</p>
+                    <p>Cautivar a nuestros clientes con platillos poco conocidos del mundo, promoviendo la diversidad y riqueza de las gastronomías globales. Buscamos no solo ofrecer una experiencia culinaria única e inolvidable, sino también educar y sensibilizar a nuestros comensales sobre la historia, cultura y tradiciones detrás de cada platillo.</p>
                 </div>
                 <div class="mv-card">
-                    <i class="fas fa-eye"></i>
+                    <div class="mv-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </div>
                     <h3>Visión</h3>
-                    <p>Ser reconocidos como el epicentro de la cultura umami a nivel global, creando una comunidad internacional de amantes de la gastronomía que valore la autenticidad, la creatividad y la excelencia en cada bocado.</p>
+                    <p>Ser un referente en la promoción de la diversidad gastronómica a nivel global, donde cada platillo desconocido se convierta en una celebración de la cultura y tradición de su origen. Queremos ser un espacio de descubrimiento y conexión, donde nuestros clientes no solo disfruten de una experiencia culinaria, sino que también se sumerjan en un viaje que enriquezca su conocimiento y amor por la gastronomía.</p>
                 </div>
             </div>
         </div>
@@ -647,24 +578,48 @@
             <h2 class="section-title">Nuestros Valores</h2>
             <div class="values-grid">
                 <div class="value-card">
-                    <i class="fas fa-seedling"></i>
-                    <h3>Sostenibilidad</h3>
-                    <p>Trabajamos con productores locales y practicamos el abastecimiento responsable para minimizar nuestro impacto ambiental.</p>
+                    <div class="value-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                            <path d="M12 2.69v18.63"></path>
+                            <path d="M12 12.69l5.66 5.66"></path>
+                            <path d="M12 12.69l-5.66 5.66"></path>
+                        </svg>
+                    </div>
+                    <h3>Autenticidad cultural</h3>
+                    <p>Cada plato que ofrecemos refleja la cultura, historia y sabores de su lugar de origen. Les ofrecemos una experiencia gastronómica que va más allá del simple acto de comer, es un viaje cultural.</p>
                 </div>
                 <div class="value-card">
-                    <i class="fas fa-heart"></i>
-                    <h3>Pasión</h3>
-                    <p>Cada plato que servimos está impregnado de nuestra devoción por la excelencia culinaria y el arte del buen comer.</p>
+                    <div class="value-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                    </div>
+                    <h3>Curiosidad y descubrimiento</h3>
+                    <p>Invitamos a los comensales que buscan algo más que la cocina convencional a explorar y descubrir platos poco conocidos, a salir de su zona de confort y a descubrir sabores, texturas y combinaciones que jamás pensaron que existirían.</p>
                 </div>
                 <div class="value-card">
-                    <i class="fas fa-lightbulb"></i>
-                    <h3>Innovación</h3>
-                    <p>Exploramos constantemente nuevas técnicas, sabores y combinaciones para sorprender y deleitar a nuestros comensales.</p>
+                    <div class="value-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Excelencia en los detalles</h3>
+                    <p>Cada plato es una obra maestra en sí misma, desde la selección de ingredientes frescos y de alta calidad hasta la presentación final. La atención a los detalles demuestra respeto por la tradición culinaria que representamos.</p>
                 </div>
                 <div class="value-card">
-                    <i class="fas fa-hands-helping"></i>
-                    <h3>Comunidad</h3>
-                    <p>Creemos en el poder de la comida para unir personas y crear momentos memorables alrededor de la mesa.</p>
+                    <div class="value-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3>Conexión humana</h3>
+                    <p>La comida tiene el poder de conectar a las personas. Al compartir platos de diferentes culturas, creamos un puente entre nuestra cocina y las historias de quienes la crearon. Fomentamos un ambiente donde los comensales no solo comen, sino que también aprenden y conversan.</p>
                 </div>
             </div>
         </div>
@@ -748,7 +703,7 @@
             });
             
             // Aplicar a las tarjetas de equipo y valores
-            const cards = document.querySelectorAll('.team-member, .value-card');
+            const cards = document.querySelectorAll('.team-member, .value-card, .mv-card');
             cards.forEach(card => {
                 card.style.opacity = 0;
                 card.style.transform = 'translateY(20px)';
