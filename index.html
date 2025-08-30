@@ -1,10 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Club Umami - Menú Gastronómico</title>
+    <title>El Club Umami - Donde el quinto sabor se convierte en experiencia</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Estilos generales */
         * {
@@ -15,9 +16,10 @@
         }
         
         body {
-            background-color: #f5f5f5;
+            background-color: #f9f5f0;
             color: #5d4037;
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
         
         .container {
@@ -26,8 +28,57 @@
             padding: 0 20px;
         }
         
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #c62828;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #b71c1c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #c62828;
+            color: #c62828;
+        }
+        
+        .btn-outline:hover {
+            background-color: #c62828;
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            color: #5d4037;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: #c62828;
+            margin: 15px auto 0;
         }
         
         /* Encabezado */
@@ -76,33 +127,12 @@
             color: #c62828;
         }
         
-        .cart-icon {
-            position: relative;
-            cursor: pointer;
-            color: #5d4037;
-        }
-        
-        .cart-count {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background-color: #388e3c;
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-        }
-        
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
-            height: 500px;
+            height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -113,176 +143,255 @@
         .hero-content h1 {
             font-size: 48px;
             margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
         }
         
         .hero-content p {
             font-size: 20px;
             margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
         }
         
-        .btn {
-            display: inline-block;
-            background-color: #c62828;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
-        .btn:hover {
-            background-color: #b71c1c;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
-        /* Sección de Categorías */
-        .categories {
-            padding: 80px 0;
+        /* Sección de Introducción */
+        .intro {
+            background-color: #fff;
+            text-align: center;
+        }
+        
+        .intro-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .intro-content p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        /* Sección de Historia */
+        .history {
             background-color: #f5f5f5;
         }
         
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            font-size: 36px;
-            color: #5d4037;
+        .timeline {
             position: relative;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .section-title:after {
+        .timeline:before {
             content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background-color: #c62828;
-            margin: 15px auto 0;
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: #c62828;
+            transform: translateX(-50%);
         }
         
-        .categories-nav {
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 70px;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 70px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #c62828;
+            border-radius: 50%;
+            top: 30px;
+        }
+        
+        .timeline-item:nth-child(odd):after {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even):after {
+            left: -10px;
+        }
+        
+        /* Sección de Misión y Visión */
+        .mission-vision {
+            background-color: #fff;
+        }
+        
+        .mv-container {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 40px;
+            gap: 40px;
+            justify-content: center;
         }
         
-        .category-btn {
-            background-color: white;
-            border: 2px solid #c62828;
+        .mv-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background: #f9f5f0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+        
+        .mv-card i {
+            font-size: 40px;
             color: #c62828;
-            padding: 10px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
+            margin-bottom: 20px;
         }
         
-        .category-btn:hover, .category-btn.active {
-            background-color: #c62828;
-            color: white;
-        }
-        
-        /* Sección de Menú */
-        .menu-section {
-            padding: 60px 0;
-            background-color: #eeeeee;
-        }
-        
-        .menu-category {
-            margin-bottom: 60px;
-        }
-        
-        .menu-category-title {
-            font-size: 28px;
+        .mv-card h3 {
+            margin-bottom: 15px;
             color: #5d4037;
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #c62828;
         }
         
-        .menu-items {
+        /* Sección de Equipo */
+        .team {
+            background-color: #f5f5f5;
+        }
+        
+        .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
         }
         
-        .menu-item {
-            background-color: white;
+        .team-member {
+            background: white;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s;
+            text-align: center;
         }
         
-        .menu-item:hover {
+        .team-member:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
-        .menu-item-img {
-            height: 200px;
+        .team-img {
+            height: 250px;
             background-size: cover;
             background-position: center;
         }
         
-        .menu-item-info {
+        .team-info {
             padding: 20px;
         }
         
-        .menu-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .menu-item-title {
-            font-size: 18px;
+        .team-info h3 {
             color: #5d4037;
+            margin-bottom: 5px;
         }
         
-        .menu-item-price {
-            font-size: 18px;
-            font-weight: bold;
+        .team-role {
             color: #c62828;
-        }
-        
-        .menu-item-description {
-            color: #795548;
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-        
-        .pairing-note {
-            background-color: #f9f5f0;
-            padding: 10px;
-            border-left: 3px solid #c62828;
-            margin-bottom: 15px;
-            font-size: 13px;
             font-style: italic;
+            margin-bottom: 15px;
         }
         
-        .menu-item-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Sección de Valores */
+        .values {
+            background-color: #fff;
         }
         
-        .add-to-cart {
-            background-color: #388e3c;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 500;
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .value-card {
+            background: #f9f5f0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
             transition: all 0.3s;
         }
         
-        .add-to-cart:hover {
-            background-color: #2e7d32;
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-card i {
+            font-size: 40px;
+            color: #c62828;
+            margin-bottom: 20px;
+        }
+        
+        .value-card h3 {
+            margin-bottom: 15px;
+            color: #5d4037;
+        }
+        
+        /* Sección de CTA */
+        .cta {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: white;
+            padding: 100px 0;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* Footer */
@@ -366,14 +475,29 @@
                 font-size: 36px;
             }
             
-            .categories-nav {
-                flex-direction: column;
-                align-items: center;
+            .timeline:before {
+                left: 30px;
             }
             
-            .category-btn {
-                width: 200px;
-                text-align: center;
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+                text-align: left !important;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                left: 0;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd):after,
+            .timeline-item:nth-child(even):after {
+                left: 20px;
             }
         }
     </style>
@@ -390,13 +514,9 @@
                         <li><a href="#">Menú</a></li>
                         <li><a href="#">Experiencias</a></li>
                         <li><a href="#">Club VIP</a></li>
-                        <li><a href="#">¿Quiénes Somos?</a></li>
+                        <li><a href="#">Reservas</a></li>
                     </ul>
                 </nav>
-                <div class="cart-icon" id="cart-icon">
-                    🛒
-                    <span class="cart-count">0</span>
-                </div>
             </div>
         </div>
     </header>
@@ -404,146 +524,159 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Nuestro Menú Umami</h1>
-            <p>Descubre el quinto sabor en cada uno de nuestros platillos</p>
+            <h1>Descubre el quinto sabor</h1>
+            <p>Una experiencia gastronómica única donde la tradición se encuentra con la innovación</p>
+            <a href="#about" class="btn">Conoce más</a>
         </div>
     </section>
 
-    <!-- Sección de Categorías -->
-    <section class="categories">
+    <!-- Sección de Introducción -->
+    <section id="about" class="intro">
         <div class="container">
-            <h2 class="section-title">Categorías</h2>
-            <div class="categories-nav">
-                <button class="category-btn active" data-category="entradas">Entradas</button>
-                <button class="category-btn" data-category="platos-fuertes">Platos Fuertes</button>
-                <button class="category-btn" data-category="postres">Postres</button>
-                <button class="category-btn" data-category="bebidas">Bebidas</button>
+            <h2 class="section-title">Bienvenidos al Club Umami</h2>
+            <div class="intro-content">
+                <p>En el corazón de la ciudad, nace un espacio donde los sentidos despiertan y el paladar descubre una nueva dimensión. El Club Umami es más que un restaurante; es un santuario para los amantes del buen comer, un lugar donde cada platillo cuenta una historia y cada sabor evoca una emoción.</p>
+                <p>Fundado en 2010 por un grupo de apasionados chefs y sommeliers, nuestro club rinde homenaje al quinto sabor básico: el umami, ese gusto profundo y sabroso que realza y equilibra cada creación culinaria.</p>
+                <p>Te invitamos a formar parte de nuestra familia, a explorar los límites de tu paladar y a vivir experiencias gastronómicas que transformarán tu manera de entender la comida.</p>
             </div>
         </div>
     </section>
 
-    <!-- Sección de Menú -->
-    <section class="menu-section">
+    <!-- Sección de Historia -->
+    <section class="history">
         <div class="container">
-            <!-- Categoría: Entradas -->
-            <div class="menu-category" id="entradas">
-                <h3 class="menu-category-title">Entradas</h3>
-                <div class="menu-items">
-                    <div class="menu-item">
-                        <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1552332386-f8b00d24f4d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
-                        <div class="menu-item-info">
-                            <div class="menu-item-header">
-                                <h4 class="menu-item-title">Tostadas de Tinga de Pollo</h4>
-                                <span class="menu-item-price">$12.00</span>
-                            </div>
-                            <p class="menu-item-description">Tostadas de maíz con base de frijoles refritos, tinga de pollo deshebrado en salsa de jitomate y chipotle, decoradas con lechuga, queso y crema.</p>
-                            <div class="menu-item-footer">
-                                <button class="add-to-cart">Añadir al Carrito</button>
-                            </div>
-                        </div>
+            <h2 class="section-title">Nuestra Historia</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2010</h3>
+                        <p>Fundación del Club Umami por los chefs Elena Martínez y Carlos Ruiz, con la visión de crear un espacio dedicado a la exploración del quinto sabor.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2012</h3>
+                        <p>Primera expansión con la inauguración de nuestro espacio de eventos y catas, permitiendo experiencias gastronómicas más íntimas y personalizadas.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2015</h3>
+                        <p>Reconocimiento con la estrella Michelin, validando nuestra propuesta innovadora y la excelencia en cada uno de nuestros platillos.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2018</h3>
+                        <p>Lanzamiento del programa Club VIP, creando una comunidad de foodies apasionados con acceso a eventos exclusivos y experiencias culinarias únicas.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2023</h3>
+                        <p>Expansión internacional con la apertura de nuestra primera sede en Tokio, conectando las tradiciones culinarias japonesas con la cocina mediterránea.</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Categoría: Platos Fuertes -->
-            <div class="menu-category" id="platos-fuertes" style="display: none;">
-                <h3 class="menu-category-title">Platos Fuertes</h3>
-                <div class="menu-items">
-                    <div class="menu-item">
-                        <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
-                        <div class="menu-item-info">
-                            <div class="menu-item-header">
-                                <h4 class="menu-item-title">Saltimbocca a la Romana</h4>
-                                <span class="menu-item-price">$9.50</span>
-                            </div>
-                            <p class="menu-item-description">Finas rebanadas de ternera cubiertas con prosciutto y una hoja de salvia, cocinadas en mantequilla y vino blanco. Acompañado de vegetales de temporada.</p>
-                            <div class="menu-item-footer">
-                                <button class="add-to-cart">Añadir al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Sección de Misión y Visión -->
+    <section class="mission-vision">
+        <div class="container">
+            <h2 class="section-title">Misión y Visión</h2>
+            <div class="mv-container">
+                <div class="mv-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Misión</h3>
+                    <p>Revolucionar la experiencia gastronómica mediante la exploración del sabor umami, utilizando ingredientes de la más alta calidad y técnicas innovadoras que honran las tradiciones culinarias mientras creamos nuevas fronteras de sabor.</p>
+                </div>
+                <div class="mv-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>Visión</h3>
+                    <p>Ser reconocidos como el epicentro de la cultura umami a nivel global, creando una comunidad internacional de amantes de la gastronomía que valore la autenticidad, la creatividad y la excelencia en cada bocado.</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Categoría: Postres -->
-            <div class="menu-category" id="postres" style="display: none;">
-                <h3 class="menu-category-title">Postres</h3>
-                <div class="menu-items">
-                    <div class="menu-item">
-                        <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
-                        <div class="menu-item-info">
-                            <div class="menu-item-header">
-                                <h4 class="menu-item-title">Verrine de Frutos Rojos</h4>
-                                <span class="menu-item-price">$11.00</span>
-                            </div>
-                            <p class="menu-item-description">Postre servido en vaso con capas de mousse de queso blanco, coulis de frutos rojos y base de galleta triturada. Una explosión de texturas y sabores.</p>
-                            <div class="menu-item-footer">
-                                <button class="add-to-cart">Añadir al Carrito</button>
-                            </div>
-                        </div>
+    <!-- Sección de Equipo -->
+    <section class="team">
+        <div class="container">
+            <h2 class="section-title">Nuestro Equipo</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1583394293214-28ded15ee548?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="team-info">
+                        <h3>Elena Martínez</h3>
+                        <p class="team-role">Chef Ejecutiva & Co-Fundadora</p>
+                        <p>Con más de 20 años de experiencia en cocinas de Europa y Asia, Elena es la visionaria detrás de nuestra propuesta umami.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="team-info">
+                        <h3>Carlos Ruiz</h3>
+                        <p class="team-role">Director de Sala & Co-Fundador</p>
+                        <p>Experto en maridajes y experiencias gastronómicas, Carlos asegura que cada visita al Club sea memorable.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1566554273541-37a9ca77b91f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="team-info">
+                        <h3>Ana Takahashi</h3>
+                        <p class="team-role">Jefa de Investigación Umami</p>
+                        <p>Especialista en sabores japoneses, Ana fusiona técnicas tradicionales con innovación culinaria.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-img" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="team-info">
+                        <h3>Miguel Ángel Ortega</h3>
+                        <p class="team-role">Sumiller Principal</p>
+                        <p>Con un paladar excepcional, Miguel Ángel crea maridajes que elevan cada platillo a una experiencia sensorial completa.</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Categoría: Bebidas -->
-            <div class="menu-category" id="bebidas" style="display: none;">
-                <h3 class="menu-category-title">Bebidas</h3>
-                <div class="menu-items">
-                    <!-- Bebida para Entrada -->
-                    <div class="menu-item">
-                        <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1536935338788-846bb9981813?ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80');"></div>
-                        <div class="menu-item-info">
-                            <div class="menu-item-header">
-                                <h4 class="menu-item-title">Cóctel de Papelón</h4>
-                                <span class="menu-item-price">$5.00</span>
-                            </div>
-                            <p class="menu-item-description">Base dulce de papelón disuelto en agua con notas terrosas, mezclado con zumo de limón y ron venezolano. Servido frío.</p>
-                            <div class="pairing-note">
-                                Maridaje: La acidez del limón limpia el paladar de las notas grasas y especiadas del chipotle en la tinga.
-                            </div>
-                            <div class="menu-item-footer">
-                                <button class="add-to-cart">Añadir al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Bebida para Principal -->
-                    <div class="menu-item">
-                        <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80');"></div>
-                        <div class="menu-item-info">
-                            <div class="menu-item-header">
-                                <h4 class="menu-item-title">Yuzu Highball</h4>
-                                <span class="menu-item-price">$8.00</span>
-                            </div>
-                            <p class="menu-item-description">Coctel refrescante a base de whisky mezclado con soda y yuzu, un cítrico japonés con notas de limón y mandarina.</p>
-                            <div class="pairing-note">
-                                Maridaje: La acidez intensa del yuzu es un excelente contrapunto a la salinidad y riqueza del prosciutto y la mantequilla del saltimbocca.
-                            </div>
-                            <div class="menu-item-footer">
-                                <button class="add-to-cart">Añadir al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Bebida para Postre -->
-                    <div class="menu-item">
-                        <div class="menu-item-img" style="background-image: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80');"></div>
-                        <div class="menu-item-info">
-                            <div class="menu-item-header">
-                                <h4 class="menu-item-title">Rebujito</h4>
-                                <span class="menu-item-price">$6.00</span>
-                            </div>
-                            <p class="menu-item-description">Mezcla refrescante de vino de jerez con soda de limón y hojas de menta. Ligero y herbal.</p>
-                            <div class="pairing-note">
-                                Maridaje: Un excelente puente entre los sabores salados del plato principal y la dulzura del postre.
-                            </div>
-                            <div class="menu-item-footer">
-                                <button class="add-to-cart">Añadir al Carrito</button>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Sección de Valores -->
+    <section class="values">
+        <div class="container">
+            <h2 class="section-title">Nuestros Valores</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Sostenibilidad</h3>
+                    <p>Trabajamos con productores locales y practicamos el abastecimiento responsable para minimizar nuestro impacto ambiental.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Pasión</h3>
+                    <p>Cada plato que servimos está impregnado de nuestra devoción por la excelencia culinaria y el arte del buen comer.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Innovación</h3>
+                    <p>Exploramos constantemente nuevas técnicas, sabores y combinaciones para sorprender y deleitar a nuestros comensales.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Comunidad</h3>
+                    <p>Creemos en el poder de la comida para unir personas y crear momentos memorables alrededor de la mesa.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Sección de CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>¿Listo para una experiencia umami?</h2>
+            <p>Únete a nuestro club exclusivo y descubre un mundo de sabores, eventos especiales y experiencias gastronómicas que transformarán tu paladar para siempre.</p>
+            <a href="#" class="btn">Hazte miembro VIP</a>
+            <a href="#" class="btn btn-outline">Reserva tu mesa</a>
         </div>
     </section>
 
@@ -588,32 +721,40 @@
     </footer>
 
     <script>
-        // Funcionalidad para filtrar categorías
+        // Animación de aparición de elementos al hacer scroll
         document.addEventListener('DOMContentLoaded', function() {
-            const categoryButtons = document.querySelectorAll('.category-btn');
-            const menuCategories = document.querySelectorAll('.menu-category');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
             
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-                    
-                    // Quitar clase active de todos los botones
-                    categoryButtons.forEach(btn => btn.classList.remove('active'));
-                    // Añadir clase active al botón clickeado
-                    this.classList.add('active');
-                    
-                    // Ocultar todas las categorías
-                    menuCategories.forEach(cat => {
-                        cat.style.display = 'none';
-                    });
-                    
-                    // Mostrar solo la categoría seleccionada
-                    document.getElementById(category).style.display = 'block';
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
                 });
+            }, observerOptions);
+            
+            // Aplicar a las secciones
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
             });
             
-            // Mostrar solo la categoría activa al cargar la página
-            document.querySelector('.category-btn.active').click();
+            // Aplicar a las tarjetas de equipo y valores
+            const cards = document.querySelectorAll('.team-member, .value-card');
+            cards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
         });
     </script>
 </body>
