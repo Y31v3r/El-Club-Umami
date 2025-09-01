@@ -285,6 +285,87 @@
             background-color: #2e7d32;
         }
         
+        /* Modal del carrito */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 350px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .cart-modal.open {
+            transform: translateX(0);
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .cart-items {
+            padding: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-total {
+            padding: 20px;
+            text-align: right;
+            font-weight: bold;
+            border-top: 2px solid #eee;
+        }
+        
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #c62828;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        /* Notificación */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #388e3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
         /* Footer */
         footer {
             background-color: #424242;
@@ -366,6 +447,10 @@
                 font-size: 36px;
             }
             
+            .hero-content p {
+                font-size: 18px;
+            }
+            
             .categories-nav {
                 flex-direction: column;
                 align-items: center;
@@ -374,6 +459,50 @@
             .category-btn {
                 width: 200px;
                 text-align: center;
+                margin-bottom: 10px;
+            }
+            
+            .cart-modal {
+                width: 100%;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .hero-content p {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .menu-category-title {
+                font-size: 24px;
+            }
+            
+            .header-content {
+                padding: 15px 0;
+            }
+            
+            .logo {
+                font-size: 24px;
             }
         }
     </style>
@@ -400,11 +529,27 @@
         </div>
     </header>
 
+    <!-- Modal del carrito -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-header">
+            <h3>Tu Carrito</h3>
+            <button class="close-cart" id="close-cart">×</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Los elementos del carrito se añadirán aquí dinámicamente -->
+        </div>
+        <div class="cart-total">
+            Total: <span id="cart-total">0$</span>
+        </div>
+        <button class="checkout-btn">Finalizar Compra</button>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Nuestro Menú Umami</h1>
             <p>Descubre el quinto sabor en cada uno de nuestros platillos</p>
+            <a href="#entradas" class="btn">Ver Menú</a>
         </div>
     </section>
 
@@ -429,7 +574,7 @@
                 <h3 class="menu-category-title">Entradas</h3>
                 <div class="menu-items">
                     <div class="menu-item">
-                        <div class="menu-item-img" style="background-image: url('https://imgur.com/a/c8HArBW');"></div>
+                        <div class="menu-item-img" style="background-image: url('https://i.imgur.com/c8HArBW.jpg');"></div>
                         <div class="menu-item-info">
                             <div class="menu-item-header">
                                 <h4 class="menu-item-title">Tostadas de Tinga de Pollo</h4>
@@ -437,7 +582,7 @@
                             </div>
                             <p class="menu-item-description">Tostadas de maíz con base de frijoles refritos, tinga de pollo deshebrado en salsa de jitomate y chipotle, decoradas con lechuga, queso y crema.</p>
                             <div class="menu-item-footer">
-                                <button class="add-to-cart">Añadir al Carrito</button>
+                                <button class="add-to-cart" data-name="Tostadas de Tinga de Pollo" data-price="12">Añadir al Carrito</button>
                             </div>
                         </div>
                     </div>
@@ -457,7 +602,7 @@
                             </div>
                             <p class="menu-item-description">Finas rebanadas de ternera cubiertas con prosciutto y una hoja de salvia, cocinadas en mantequilla y vino blanco. Acompañado de vegetales de temporada.</p>
                             <div class="menu-item-footer">
-                                <button class="add-to-cart">Añadir al Carrito</button>
+                                <button class="add-to-cart" data-name="Saltimbocca a la Romana" data-price="9.5">Añadir al Carrito</button>
                             </div>
                         </div>
                     </div>
@@ -477,7 +622,7 @@
                             </div>
                             <p class="menu-item-description">Postre servido en vaso con capas de mousse de queso blanco, coulis de frutos rojos y base de galleta triturada. Una explosión de texturas y sabores.</p>
                             <div class="menu-item-footer">
-                                <button class="add-to-cart">Añadir al Carrito</button>
+                                <button class="add-to-cart" data-name="Verrine de Fruits Rouges" data-price="11">Añadir al Carrito</button>
                             </div>
                         </div>
                     </div>
@@ -501,7 +646,7 @@
                                 Maridaje: La acidez del limón limpia el paladar de las notas grasas y especiadas del chipotle en la tinga.
                             </div>
                             <div class="menu-item-footer">
-                                <button class="add-to-cart">Añadir al Carrito</button>
+                                <button class="add-to-cart" data-name="Coctel de Papelón con Ron y Limón" data-price="5">Añadir al Carrito</button>
                             </div>
                         </div>
                     </div>
@@ -519,7 +664,7 @@
                                 Maridaje: La acidez intensa del yuzu es un excelente contrapunto a la salinidad y riqueza del prosciutto y la mantequilla del saltimbocca.
                             </div>
                             <div class="menu-item-footer">
-                                <button class="add-to-cart">Añadir al Carrito</button>
+                                <button class="add-to-cart" data-name="Yuzu Highball" data-price="8">Añadir al Carrito</button>
                             </div>
                         </div>
                     </div>
@@ -537,7 +682,7 @@
                                 Maridaje: Un excelente puente entre los sabores salados del plato principal y la dulzura del postre.
                             </div>
                             <div class="menu-item-footer">
-                                <button class="add-to-cart">Añadir al Carrito</button>
+                                <button class="add-to-cart" data-name="Rebujito" data-price="6">Añadir al Carrito</button>
                             </div>
                         </div>
                     </div>
@@ -613,6 +758,93 @@
             
             // Mostrar solo la categoría activa al cargar la página
             document.querySelector('.category-btn.active').click();
+            
+            // Funcionalidad del carrito
+            const cartIcon = document.getElementById('cart-icon');
+            const cartModal = document.getElementById('cart-modal');
+            const closeCart = document.getElementById('close-cart');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const cartCount = document.querySelector('.cart-count');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            let cart = [];
+            let total = 0;
+            
+            // Abrir carrito
+            cartIcon.addEventListener('click', () => {
+                cartModal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Cerrar carrito
+            closeCart.addEventListener('click', () => {
+                cartModal.classList.remove('open');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Añadir productos al carrito
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const name = e.target.getAttribute('data-name');
+                    const price = parseFloat(e.target.getAttribute('data-price'));
+                    
+                    // Añadir producto al carrito
+                    cart.push({ name, price });
+                    
+                    // Actualizar total
+                    total += price;
+                    
+                    // Actualizar interfaz
+                    updateCart();
+                    
+                    // Mostrar mensaje de confirmación
+                    showNotification(`${name} añadido al carrito`);
+                });
+            });
+            
+            // Actualizar carrito
+            function updateCart() {
+                // Limpiar carrito
+                cartItems.innerHTML = '';
+                
+                // Añadir items
+                cart.forEach((item, index) => {
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <div>${item.name}</div>
+                        <div>${item.price}$</div>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+                
+                // Actualizar total y contador
+                cartTotal.textContent = `${total.toFixed(2)}$`;
+                cartCount.textContent = cart.length;
+            }
+            
+            // Mostrar notificación
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.classList.add('notification');
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                // Mostrar notificación
+                setTimeout(() => {
+                    notification.style.opacity = '1';
+                }, 10);
+                
+                // Eliminar notificación después de 3 segundos
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 500);
+                }, 3000);
+            }
         });
     </script>
 </body>
