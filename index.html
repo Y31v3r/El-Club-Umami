@@ -4,154 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Club Umami - Donde el quinto sabor se convierte en experiencia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Estilos generales */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
+        /* Variables CSS para consistencia */
+        :root {
+            --color-brown: #5d4037;
+            --color-beige: #f9f5f0;
+            --color-red-primary: #c62828;
+            --color-red-dark: #b71c1c;
+            --color-red-light: #ef5350;
+            --color-white: #ffffff;
+            --color-gray-light: #f5f5f5;
+            --color-gray-dark: #424242;
+            --color-gray-text: #616161;
+            --shadow-default: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.15);
+            --transition-default: all 0.3s ease;
         }
-        
+
         body {
-            background-color: #f9f5f0;
-            color: #5d4037;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-brown);
+            background-color: var(--color-beige);
             line-height: 1.6;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
+
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
+            font-weight: 700;
         }
-        
-        section {
-            padding: 80px 0;
+
+        .text-brown { color: var(--color-brown); }
+        .bg-beige { background-color: var(--color-beige); }
+        .text-red-primary { color: var(--color-red-primary); }
+        .bg-red-primary { background-color: var(--color-red-primary); }
+        .bg-red-hover:hover { background-color: var(--color-red-dark); }
+
+        /* Utilidades personalizadas */
+        .section-padding {
+            padding: 5rem 0;
         }
-        
-        .btn {
-            display: inline-block;
-            background-color: #c62828;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
+
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 8rem 0;
+            }
         }
-        
-        .btn:hover {
-            background-color: #b71c1c;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
+
+        .container-custom {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
         }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid #c62828;
-            color: #c62828;
-        }
-        
-        .btn-outline:hover {
-            background-color: #c62828;
-            color: white;
-        }
-        
+
         .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            font-size: 36px;
-            color: #5d4037;
             position: relative;
+            margin-bottom: 3rem;
+            text-align: center;
         }
-        
-        .section-title:after {
+
+        .section-title-line::after {
             content: '';
-            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background-color: #c62828;
-            margin: 15px auto 0;
+            background-color: var(--color-red-primary);
         }
-        
-        /* Encabezado */
-        header {
-            background-color: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #c62828;
-        }
-        
-        .logo span {
-            color: #5d4037;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 30px;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: #5d4037;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: #c62828;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
-        
-        .hero-content h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            animation: fadeInDown 1s ease;
-        }
-        
-        .hero-content p {
-            font-size: 20px;
-            margin-bottom: 30px;
-            animation: fadeInUp 1s ease;
-        }
-        
+
+        /* Animaciones */
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -162,7 +89,7 @@
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -173,442 +100,334 @@
                 transform: translateY(0);
             }
         }
-        
-        /* Sección de Introducción */
-        .intro {
-            background-color: #fff;
-            text-align: center;
-        }
-        
-        .intro-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .intro-content p {
-            font-size: 18px;
-            margin-bottom: 25px;
-            line-height: 1.8;
-        }
-        
-        .intro-content h3 {
-            font-size: 24px;
-            margin-top: 40px;
-            margin-bottom: 15px;
-            color: #c62828;
-        }
-        
-        /* Sección de Misión y Visión */
-        .mission-vision {
-            background-color: #fff;
-        }
-        
-        .mv-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            justify-content: center;
-        }
-        
-        .mv-card {
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
-            background: #f9f5f0;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            text-align: center;
-        }
-        
-        .mv-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%);
-            color: white;
-        }
-        
-        .mv-card h3 {
-            margin-bottom: 15px;
-            color: #5d4037;
-        }
-        
-        /* Sección de Equipo */
-        .team {
-            background-color: #f5f5f5;
-        }
-        
-        .team-grid {
-            display: grid;
-            gap: 30px;
-            /* Se ha ajustado para una simetría perfecta con 3 columnas en pantallas grandes */
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+        .animate-fade-in-down {
+            animation: fadeInDown 1s ease-out;
         }
 
-        /* Se ha agregado una media query para que en desktop se muestre una cuadrícula de 3x2 */
-        @media (min-width: 900px) {
-             .team-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
-        
-        .team-member {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
-            text-align: center;
+
+        /* Encabezado */
+        header {
+            transition: var(--transition-default);
         }
-        
-        .team-member:hover {
+
+        header.scrolled {
+            box-shadow: var(--shadow-default);
+        }
+
+        nav ul li a {
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-red-primary);
+            transition: var(--transition-default);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+            z-index: -1;
+        }
+
+        /* Tarjetas */
+        .card-hover {
+            transition: var(--transition-default);
+        }
+
+        .card-hover:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .team-img {
-            height: 250px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .team-info {
-            padding: 20px;
-        }
-        
-        .team-info h3 {
-            color: #5d4037;
-            margin-bottom: 5px;
-        }
-        
-        .team-role {
-            color: #c62828;
-            font-style: italic;
-            margin-bottom: 15px;
-        }
-        
-        /* Sección de Valores */
-        .values {
-            background-color: #fff;
-        }
-        
-        .values-grid {
-            display: grid;
-            gap: 30px;
-            /* Se ha ajustado para una simetría perfecta con 2 columnas */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            box-shadow: var(--shadow-hover);
         }
 
-        /* Se ha agregado una media query para que en desktop se muestre una cuadrícula de 2x2 */
-        @media (min-width: 769px) {
-            .values-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        .value-card {
-            background: #f9f5f0;
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-        }
-        
-        .value-icon {
-            width: 90px;
-            height: 90px;
-            margin-bottom: 25px;
-            display: flex;
+        /* Iconos SVG con color rojo */
+        .icon-container {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%);
-            color: white;
-            transition: all 0.3s ease;
+            background-color: var(--color-white);
+            box-shadow: 0 4px 10px rgba(198, 40, 40, 0.2);
+            transition: var(--transition-default);
+            border: 2px solid var(--color-red-light);
         }
-        
-        .value-card:hover .value-icon {
-            transform: scale(1.1) rotate(5deg);
-            background: linear-gradient(135deg, #b71c1c 0%, #8e0000 100%);
+
+        .icon-container:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(198, 40, 40, 0.3);
+            background-color: var(--color-red-light);
         }
-        
-        .value-card h3 {
-            margin-bottom: 20px;
-            color: #5d4037;
-            font-size: 22px;
+
+        .icon-container:hover .icon-svg {
+            stroke: var(--color-white);
+            fill: var(--color-white);
         }
-        
-        .value-card p {
-            line-height: 1.7;
-            color: #5d4037;
+
+        .icon-svg {
+            stroke: var(--color-red-primary);
+            fill: var(--color-red-primary);
+            transition: var(--transition-default);
         }
-        
-        /* Sección de CTA */
-        .cta {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
+
+        /* Botones */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
             text-align: center;
-            color: white;
-            padding: 100px 0;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 50px;
+            transition: var(--transition-default);
+            cursor: pointer;
         }
-        
-        .cta h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
+
+        .btn-primary {
+            background-color: var(--color-red-primary);
+            color: var(--color-white);
         }
-        
-        .cta p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+
+        .btn-primary:hover {
+            background-color: var(--color-red-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(198, 40, 40, 0.3);
         }
-        
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--color-white);
+            color: var(--color-white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-white);
+            color: var(--color-red-primary);
+        }
+
         /* Footer */
         footer {
-            background-color: #424242;
-            color: white;
-            padding: 60px 0 20px;
+            position: relative;
         }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 5%;
+            right: 5%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
         }
-        
-        .footer-column h3 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: #c62828;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column ul li a {
-            color: #e0e0e0;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-column ul li a:hover {
-            color: #c62828;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-icons a {
-            color: white;
-            font-size: 20px;
-            transition: color 0.3s;
-        }
-        
-        .social-icons a:hover {
-            color: #c62828;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #616161;
-            color: #bdbdbd;
-        }
-        
-        /* Responsive */
+
+        /* Mejoras de responsividad */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            nav ul {
-                margin-top: 20px;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            
-            nav ul li {
-                margin: 10px;
-            }
-            
             .hero-content h1 {
-                font-size: 36px;
+                font-size: 2.5rem;
             }
             
-            .cta .btn {
-                display: block;
-                margin: 10px auto;
-                width: 80%;
-                max-width: 250px;
+            .section-title {
+                font-size: 2rem;
             }
             
-            .values-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .footer-column {
+                margin-bottom: 2rem;
             }
             
-            .value-card {
-                padding: 30px 20px;
+            .team-grid, .values-grid {
+                gap: 1.5rem;
             }
             
-            .value-icon {
-                width: 80px;
-                height: 80px;
+            .icon-container {
+                width: 70px;
+                height: 70px;
             }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .icon-container {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        /* Efectos de aparición al hacer scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body>
+<body class="bg-beige">
     <!-- Encabezado -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">El Club <span>Umami</span></div>
-                <nav>
-                    <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Menú</a></li>
-                        <li><a href="#">Experiencias</a></li>
-                        <li><a href="#">Club VIP</a></li>
-                        <li><a href="#">Reservas</a></li>
-                    </ul>
-                </nav>
-            </div>
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-5 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-3xl font-bold text-red-primary">El Club <span class="text-brown">Umami</span></div>
+            <nav class="mt-4 md:mt-0">
+                <ul class="flex flex-wrap justify-center text-lg gap-4 md:gap-8 list-none">
+                    <li><a href="#" class="text-brown font-medium hover:text-red-primary transition-colors duration-300">Inicio</a></li>
+                    <li><a href="#" class="text-brown font-medium hover:text-red-primary transition-colors duration-300">Menú</a></li>
+                    <li><a href="#" class="text-brown font-medium hover:text-red-primary transition-colors duration-300">Experiencias</a></li>
+                    <li><a href="#" class="text-brown font-medium hover:text-red-primary transition-colors duration-300">Club VIP</a></li>
+                    <li><a href="#" class="text-brown font-medium hover:text-red-primary transition-colors duration-300">Reservas</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Descubre el quinto sabor</h1>
-            <p>Una experiencia gastronómica única donde la tradición se encuentra con la innovación</p>
-            <a href="#about" class="btn">Conoce más</a>
+    <section class="hero relative h-[80vh] flex items-center justify-center text-center text-white bg-cover bg-center rounded-b-3xl overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="hero-content relative z-10 px-5">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 animate-fade-in-down">Descubre el quinto sabor</h1>
+            <p class="text-lg sm:text-xl mb-8 animate-fade-in-up">Una experiencia gastronómica única donde la tradición se encuentra con la innovación</p>
+            <a href="#about" class="btn btn-primary">Conoce más</a>
         </div>
     </section>
 
     <!-- Sección de Introducción -->
-    <section id="about" class="intro">
-        <div class="container">
-            <h2 class="section-title">Bienvenidos al Club Umami</h2>
+    <section id="about" class="py-20 md:py-32 bg-white text-center rounded-3xl -mt-8 relative z-20 shadow-md fade-in">
+        <div class="container mx-auto px-5 max-w-4xl">
+            <h2 class="text-4xl font-bold mb-4 text-brown relative pb-4 md:pb-6 section-title-line">Bienvenidos al Club Umami</h2>
             <div class="intro-content">
-                <p>El proyecto le club umami se creó con la finalidad de ser un explorador de la gastronomía, tanto de la alta alta cocina como de la comida casera y callejera que, a menudo, no recibe el reconocimiento que merece. El objetivo es desenterrar, documentar y celebrar estos platos que son el corazón de una cultura, pero que son desconocidos para la mayoría del mundo. La idea es conectar con nuestros comensales a través de las historias y los sabores que definen a una comunidad, dándoles a demostrar que detrás de cada país siempre tiene un platillo con una variedad de sabores que los diferencian saliendo un poco de lo común.</p>
-                <h3>¿Quiénes somos?</h3>
-                <p>En Le Club Umami somos un grupo de apasionados de la gastronomía que cree en el poder de la comida para conectar a las personas y contar historias. Nuestro equipo, compuesto por cocineros creativos, expertos en sabores y amantes de la cultura culinaria, se dedica a llevar a nuestros comensales en un viaje único a través de platillos no tan conocidos de todo el mundo. </p>
-                <p>Le Club Umami es más que un servicio de comida; es una puerta de entrada a un mundo de sabores inexplorados. Valoramos la diversidad y fomentamos un ambiente donde todos son bienvenidos a explorar y disfrutar. Cada plato que creamos es una pieza de la gastronomía global, desde un estofado especiado de África Occidental hasta un delicado plato de Asia oriental, cada bocado se convierte en una aventura y cada visita es un nuevo descubrimiento. Bienvenidos a Umami, donde el sabor es un lenguaje universal que nos conecta con otras culturas y con nosotros mismos.</p>
-                <h3>¿Cómo nace?</h3>
-                <p>Le club umami nace de dar a conocer la combinación de los 5 principales sabores de la gastronomía que son el acido, el dulce, el amargo,el salado y el umami ya que es el complemento que realzar y equilibra estos sabores. nos encargamos en que cada platos poco conocidos resalte algunos de estos sabores ya que somos un club para los curiosos y los aventureros del paladar.</p>
+                <p class="text-lg mb-6 leading-relaxed">El proyecto Le Club Umami se creó con la finalidad de ser un explorador de la gastronomía, tanto de la alta cocina como de la comida casera y callejera que, a menudo, no recibe el reconocimiento que merece. El objetivo es desenterrar, documentar y celebrar estos platos que son el corazón de a cultura, pero que son desconocidos para la mayoría del mundo. La idea es conectar con nuestros comensales a través de las historias y los sabores que definen a una comunidad, dándoles a demostrar que detrás de cada país siempre tiene un platillo con una variedad de sabores que los diferencian saliendo un poco de lo común.</p>
+                <h3 class="text-3xl font-bold text-red-primary mt-10 mb-4">¿Quiénes somos?</h3>
+                <p class="text-lg mb-6 leading-relaxed">En Le Club Umami somos un grupo de apasionados de la gastronomía que cree en el poder de la comida para conectar a las personas y contar historias. Nuestro equipo, compuesto por cocineros creativos, expertos en sabores y amantes de la cultura culinaria, se dedica a llevar a nuestros comensales en un viaje único a través de platillos no tan conocidos de todo el mundo.</p>
+                <p class="text-lg leading-relaxed">Le Club Umami es más que un servicio de comida; es una puerta de entrada a un mundo de sabores inexplorados. Valoramos la diversidad y fomentamos un ambiente donde todos son bienvenidos a explorar y disfrutar. Cada plato que creamos es una pieza de la gastronomía global, desde un estofado especiado de África Occidental hasta un delicado plato de Asia oriental, cada bocado se convierte en una aventura y cada visita es un nuevo descubrimiento. Bienvenidos a Umami, donde el sabor es un lenguaje universal que nos conecta con otras culturas y con nosotros mismos.</p>
+                <h3 class="text-3xl font-bold text-red-primary mt-10 mb-4">¿Cómo nace?</h3>
+                <p class="text-lg leading-relaxed">Le Club Umami nace de dar a conocer la combinación de los 5 principales sabores de la gastronomía que son el ácido, el dulce, el amargo, el salado y el umami ya que es el complemento que realza y equilibra estos sabores. Nos encargamos en que cada plato poco conocido resalte algunos de estos sabores ya que somos un club para los curiosos y los aventureros del paladar.</p>
             </div>
         </div>
     </section>
 
     <!-- Sección de Misión y Visión -->
-    <section class="mission-vision">
-        <div class="container">
-            <h2 class="section-title">Misión y Visión</h2>
-            <div class="mv-container">
-                <div class="mv-card">
-                    <div class="mv-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="16"></line>
-                            <line x1="8" y1="12" x2="16" y2="12"></line>
+    <section class="py-20 md:py-32 bg-beige text-center fade-in">
+        <div class="container mx-auto px-5">
+            <h2 class="text-4xl font-bold mb-12 text-brown relative pb-4 md:pb-6 section-title-line">Misión y Visión</h2>
+            <div class="flex flex-col md:flex-row gap-8 justify-center">
+                <div class="card-hover flex-1 min-w-80 max-w-2xl bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="icon-container w-20 h-20 mx-auto mb-5">
+                        <svg class="icon-svg" width="36" height="36" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+                            <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
                         </svg>
                     </div>
-                    <h3>Misión</h3>
-                    <p>Cautivar a nuestros clientes con platillos poco conocidos del mundo, promoviendo la diversidad y riqueza de las gastronomías globales. Buscamos no solo ofrecer una experiencia culinaria única e inolvidable, sino también educar y sensibilizar a nuestros comensales sobre la historia, cultura y tradiciones detrás de cada platillo.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-brown">Misión</h3>
+                    <p class="text-lg leading-relaxed">Cautivar a nuestros clientes con platillos poco conocidos del mundo, promoviendo la diversidad y riqueza de las gastronomías globales. Buscamos no solo ofrecer una experiencia culinaria única e inolvidable, sino también educar y sensibilizar a nuestros comensales sobre la historia, cultura y tradiciones detrás de cada platillo.</p>
                 </div>
-                <div class="mv-card">
-                    <div class="mv-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
+                <div class="card-hover flex-1 min-w-80 max-w-2xl bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="icon-container w-20 h-20 mx-auto mb-5">
+                        <svg class="icon-svg" width="36" height="36" viewBox="0 0 24 24">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" fill="currentColor"></path>
+                            <circle cx="12" cy="12" r="3" fill="var(--color-white)" stroke="var(--color-white)" stroke-width="2"></circle>
                         </svg>
                     </div>
-                    <h3>Visión</h3>
-                    <p>Ser un referente en la promoción de la diversidad gastronómica a nivel global, donde cada platillo desconocido se convierta en una celebración de la cultura y tradición de su origen. Queremos ser un espacio de descubrimiento y conexión, donde nuestros clientes no solo disfruten de una experiencia culinaria, sino que también se sumerjan en un viaje que enriquezca su conocimiento y amor por la gastronomía.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-brown">Visión</h3>
+                    <p class="text-lg leading-relaxed">Ser un referente en la promoción de la diversidad gastronómica a nivel global, donde cada platillo desconocido se convierta en una celebración de la cultura y tradición de su origen. Queremos ser un espacio de descubrimiento y conexión, donde nuestros clientes no solo disfruten de una experiencia culinaria, sino que también se sumerjan en un viaje que enriquezca su conocimiento y amor por la gastronomía.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Sección de Equipo -->
-    <section class="team">
-        <div class="container">
-            <h2 class="section-title">Nuestro Equipo</h2>
-            <div class="team-grid">
-                <!-- Se han agregado los nuevos miembros del equipo -->
-                <div class="team-member">
-                    <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Abel');"></div>
-                    <div class="team-info">
-                        <h3>Abel Espinoza</h3>
-                        <p class="team-role">Saucier-Tourant</p>
-                        <p>Experto en salsas y encargado de cubrir las diferentes estaciones de la cocina.</p>
+    <section class="py-20 md:py-32 bg-gray-100 text-center rounded-3xl fade-in">
+        <div class="container mx-auto px-5">
+            <h2 class="text-4xl font-bold mb-12 text-brown relative pb-4 md:pb-6 section-title-line">Nuestro Equipo</h2>
+            <div class="flex justify-center">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl">
+                    <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Abel');"></div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-brown mb-1">Abel Espinoza</h3>
+                            <p class="text-red-primary italic text-sm mb-2">Saucier-Tourant</p>
+                            <p class="text-sm">Experto en salsas y encargado de cubrir las diferentes estaciones de la cocina.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="team-member">
-                    <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Nathaly');"></div>
-                    <div class="team-info">
-                        <h3>Nathaly Ramírez</h3>
-                        <p class="team-role">Gade Manger-Entremetier</p>
-                        <p>Responsable de los platos fríos y los entrantes. Aporta creatividad y precisión a cada plato.</p>
+                    <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Nathaly');"></div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-brown mb-1">Nathaly Ramírez</h3>
+                            <p class="text-red-primary italic text-sm mb-2">Gade Manger-Entremetier</p>
+                            <p class="text-sm">Responsable de los platos fríos y los entrantes. Aporta creatividad y precisión a cada plato.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="team-member">
-                    <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Yenifer');"></div>
-                    <div class="team-info">
-                        <h3>Yenifer Ramírez</h3>
-                        <p class="team-role">Patissier</p>
-                        <p>Maestra de la repostería y encargada de crear los postres más exquisitos.</p>
+                    <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Yenifer');"></div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-brown mb-1">Yenifer Ramírez</h3>
+                            <p class="text-red-primary italic text-sm mb-2">Patissier</p>
+                            <p class="text-sm">Maestra de la repostería y encargada de crear los postres más exquisitos.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="team-member">
-                    <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Elian');"></div>
-                    <div class="team-info">
-                        <h3>Elian Servita</h3>
-                        <p class="team-role">Sommelier-Stewart</p>
-                        <p>Conocedor de vinos y bebidas, además de encargado del servicio en sala.</p>
+                    <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Elian');"></div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-brown mb-1">Elian Servita</h3>
+                            <p class="text-red-primary italic text-sm mb-2">Sommelier-Stewart</p>
+                            <p class="text-sm">Conocedor de vinos y bebidas, además de encargado del servicio en sala.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="team-member">
-                    <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Jahnays');"></div>
-                    <div class="team-info">
-                        <h3>Jahnays Sánchez</h3>
-                        <p class="team-role">Chef</p>
-                        <p>Líder del equipo, su visión y experiencia guían cada creación culinaria.</p>
+                    <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Jahnays');"></div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-brown mb-1">Jahnays Sánchez</h3>
+                            <p class="text-red-primary italic text-sm mb-2">Chef</p>
+                            <p class="text-sm">Líder del equipo, su visión y experiencia guían cada creación culinaria.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="team-member">
-                    <div class="team-img" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Camila');"></div>
-                    <div class="team-info">
-                        <h3>Camila Palacios</h3>
-                        <p class="team-role">Sous-Chef</p>
-                        <p>La mano derecha del chef, asegura que la cocina funcione a la perfección.</p>
+                    <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://placehold.co/800x800/E3E3E3/5D4037?text=Camila');"></div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold text-brown mb-1">Camila Palacios</h3>
+                            <p class="text-red-primary italic text-sm mb-2">Sous-Chef</p>
+                            <p class="text-sm">La mano derecha del chef, asegura que la cocina funcione a la perfección.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -616,142 +435,152 @@
     </section>
 
     <!-- Sección de Valores -->
-    <section class="values">
-        <div class="container">
-            <h2 class="section-title">Nuestros Valores</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
-                            <path d="M12 2.69v18.63"></path>
-                            <path d="M12 12.69l5.66 5.66"></path>
-                            <path d="M12 12.69l-5.66 5.66"></path>
+    <section class="py-20 md:py-32 bg-white text-center rounded-3xl fade-in">
+        <div class="container mx-auto px-5">
+            <h2 class="text-4xl font-bold mb-12 text-brown relative pb-4 md:pb-6 section-title-line">Nuestros Valores</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card-hover bg-beige p-10 rounded-3xl shadow-lg">
+                    <div class="icon-container w-24 h-24 mx-auto mb-6">
+                        <svg class="icon-svg" width="48" height="48" viewBox="0 0 24 24">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" fill="currentColor"></path>
+                            <path d="M12 2.69v18.63" stroke="currentColor" stroke-width="2"></path>
+                            <path d="M12 12.69l5.66 5.66" stroke="currentColor" stroke-width="2"></path>
+                            <path d="M12 12.69l-5.66 5.66" stroke="currentColor" stroke-width="2"></path>
                         </svg>
                     </div>
-                    <h3>Autenticidad cultural</h3>
-                    <p>Cada plato que ofrecemos refleja la cultura, historia y sabores de su lugar de origen. Les ofrecemos una experiencia gastronómica que va más allá del simple acto de comer, es un viaje cultural.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-brown">Autenticidad cultural</h3>
+                    <p class="text-lg leading-relaxed">Cada plato que ofrecemos refleja la cultura, historia y sabores de su lugar de origen. Les ofrecemos una experiencia gastronómica que va más allá del simple acto de comer, es un viaje cultural.</p>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="16"></line>
-                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                <div class="card-hover bg-beige p-10 rounded-3xl shadow-lg">
+                    <div class="icon-container w-24 h-24 mx-auto mb-6">
+                        <svg class="icon-svg" width="48" height="48" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" fill="currentColor"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+                            <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
                         </svg>
                     </div>
-                    <h3>Curiosidad y descubrimiento</h3>
-                    <p>Invitamos a los comensales que buscan algo más que la cocina convencional a explorar y descubrir platos poco conocidos, a salir de su zona de confort y a descubrir sabores, texturas y combinaciones que jamás pensaron que existirían.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-brown">Curiosidad y descubrimiento</h3>
+                    <p class="text-lg leading-relaxed">Invitamos a los comensales que buscan algo más que la cocina convencional a explorar y descubrir platos poco conocidos, a salir de su zona de confort y a descubrir sabores, texturas y combinaciones que jamás pensaron que existirían.</p>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                <div class="card-hover bg-beige p-10 rounded-3xl shadow-lg">
+                    <div class="icon-container w-24 h-24 mx-auto mb-6">
+                        <svg class="icon-svg" width="48" height="48" viewBox="0 0 24 24">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="currentColor"></polygon>
                         </svg>
                     </div>
-                    <h3>Excelencia en los detalles</h3>
-                    <p>Cada plato es una obra maestra en sí misma, desde la selección de ingredientes frescos y de alta calidad hasta la presentación final. La atención a los detalles demuestra respeto por la tradición culinaria que representamos.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-brown">Excelencia en los detalles</h3>
+                    <p class="text-lg leading-relaxed">Cada plato es una obra maestra en sí misma, desde la selección de ingredientes frescos y de alta calidad hasta la presentación final. La atención a los detalles demuestra respeto por la tradición culinaria que representamos.</p>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                <div class="card-hover bg-beige p-10 rounded-3xl shadow-lg">
+                    <div class="icon-container w-24 h-24 mx-auto mb-6">
+                        <svg class="icon-svg" width="48" height="48" viewBox="0 0 24 24">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" fill="currentColor"></path>
+                            <circle cx="9" cy="7" r="4" fill="var(--color-white)" stroke="var(--color-white)" stroke-width="2"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" fill="currentColor"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" fill="currentColor"></path>
                         </svg>
                     </div>
-                    <h3>Conexión humana</h3>
-                    <p>La comida tiene el poder de conectar a las personas. Al compartir platos de diferentes culturas, creamos un puente entre nuestra cocina y las historias de quienes la crearon. Fomentamos un ambiente donde los comensales no solo comen, sino que también aprenden y conversan.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-brown">Conexión humana</h3>
+                    <p class="text-lg leading-relaxed">La comida tiene el poder de conectar a las personas. Al compartir platos de diferentes culturas, creamos un puente entre nuestra cocina y las historias de quienes la crearon. Fomentamos un ambiente donde los comensales no solo comen, sino que también aprenden y conversan.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Sección de CTA -->
-    <section class="cta">
-        <div class="container">
-            <h2>¿Listo para una experiencia umami?</h2>
-            <p>Únete a nuestro club exclusivo y descubre un mundo de sabores, eventos especiales y experiencias gastronómicas que transformarán tu paladar para siempre.</p>
-            <a href="#" class="btn">Hazte miembro VIP</a>
-            <a href="#" class="btn btn-outline">Reserva tu mesa</a>
+    <section class="py-20 md:py-32 text-center text-white relative rounded-3xl overflow-hidden fade-in" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+        <div class="absolute inset-0 bg-black opacity-70"></div>
+        <div class="relative z-10 px-5 max-w-2xl mx-auto">
+            <h2 class="text-4xl font-bold mb-4">¿Listo para una experiencia umami?</h2>
+            <p class="text-lg mb-8">Únete a nuestro club exclusivo y descubre un mundo de sabores, eventos especiales y experiencias gastronómicas que transformarán tu paladar para siempre.</p>
+            <div class="cta-buttons flex flex-col md:flex-row justify-center gap-4">
+                <a href="#" class="btn btn-primary">Hazte miembro VIP</a>
+                <a href="#" class="btn btn-outline">Reserva tu mesa</a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
+    <footer class="bg-[#424242] text-white py-16 md:py-20 rounded-3xl fade-in">
+        <div class="container mx-auto px-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div class="footer-column">
-                    <h3>El Club Umami</h3>
-                    <p>Donde el quinto sabor se convierte en una experiencia.</p>
+                    <h3 class="text-2xl font-bold mb-5 text-red-primary">El Club Umami</h3>
+                    <p class="text-gray-300">Donde el quinto sabor se convierte en una experiencia.</p>
                 </div>
                 <div class="footer-column">
-                    <h3>Explorar</h3>
-                    <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Menú</a></li>
-                        <li><a href="#">Experiencias</a></li>
-                        <li><a href="#">Club VIP</a></li>
+                    <h3 class="text-2xl font-bold mb-5 text-red-primary">Explorar</h3>
+                    <ul class="list-none">
+                        <li class="mb-2"><a href="#" class="text-gray-300 hover:text-red-primary transition-colors duration-300">Inicio</a></li>
+                        <li class="mb-2"><a href="#" class="text-gray-300 hover:text-red-primary transition-colors duration-300">Menú</a></li>
+                        <li class="mb-2"><a href="#" class="text-gray-300 hover:text-red-primary transition-colors duration-300">Experiencias</a></li>
+                        <li class="mb-2"><a href="#" class="text-gray-300 hover:text-red-primary transition-colors duration-300">Club VIP</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Contacto</h3>
-                    <ul>
-                        <li>Dirección: Av. Umami 123, Madrid</li>
-                        <li>Teléfono: +34 919 876 543</li>
-                        <li>Email: experiencia@clubumami.com</li>
+                    <h3 class="text-2xl font-bold mb-5 text-red-primary">Contacto</h3>
+                    <ul class="list-none">
+                        <li class="text-gray-300 mb-2">Dirección: Av. Umami 123, Madrid</li>
+                        <li class="text-gray-300 mb-2">Teléfono: +34 919 876 543</li>
+                        <li class="text-gray-300 mb-2">Email: experiencia@clubumami.com</li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Horario</h3>
-                    <ul>
-                        <li>Lunes a Jueves: 13:00 - 23:30</li>
-                        <li>Viernes y Sábados: 13:00 - 00:30</li>
-                        <li>Domingos: 13:00 - 22:00</li>
+                    <h3 class="text-2xl font-bold mb-5 text-red-primary">Horario</h3>
+                    <ul class="list-none">
+                        <li class="text-gray-300 mb-2">Lunes a Jueves: 13:00 - 23:30</li>
+                        <li class="text-gray-300 mb-2">Viernes y Sábados: 13:00 - 00:30</li>
+                        <li class="text-gray-300 mb-2">Domingos: 13:00 - 22:00</li>
                     </ul>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2023 El Club Umami. Todos los derechos reservados.</p>
+            <div class="text-center pt-8 border-t border-gray-600">
+                <p class="text-gray-400">&copy; 2024 El Club Umami. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Animación de aparición de elementos al hacer scroll
         document.addEventListener('DOMContentLoaded', function() {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-            
+            // Efecto de header al hacer scroll
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Animación de elementos al hacer scroll
+            const fadeElements = document.querySelectorAll('.fade-in');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.classList.add('visible');
                     }
                 });
-            }, observerOptions);
-            
-            // Aplicar a las secciones
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                section.style.opacity = 0;
-                section.style.transform = 'translateY(20px)';
-                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(section);
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(element => {
+                observer.observe(element);
             });
-            
-            // Aplicar a las tarjetas de equipo y valores
-            const cards = document.querySelectorAll('.team-member, .value-card, .mv-card');
-            cards.forEach(card => {
-                card.style.opacity = 0;
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(card);
+
+            // Smooth scrolling para enlaces internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
         });
     </script>
