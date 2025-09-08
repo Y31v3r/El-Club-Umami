@@ -5,19 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Experiencias - El Club Umami</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos generales */
+        /* Variables CSS para consistencia */
+        :root {
+            --primary-color: #c62828;
+            --primary-dark: #b71c1c;
+            --secondary-color: #5d4037;
+            --secondary-light: #8d6e63;
+            --accent-color: #388e3c;
+            --light-bg: #f5f5f5;
+            --dark-bg: #424242;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #e0e0e0;
+            --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+            --border-radius: 10px;
+        }
+        
+        /* Estilos generales mejorados */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
         }
         
         body {
-            background-color: #f5f5f5;
-            color: #5d4037;
+            background-color: var(--light-bg);
+            color: var(--secondary-color);
+            font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
@@ -28,32 +48,54 @@
         
         h1, h2, h3 {
             font-family: 'Playfair Display', serif;
+            font-weight: 700;
         }
         
-        /* Encabezado */
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Encabezado mejorado */
         header {
-            background-color: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: var(--white);
+            box-shadow: var(--shadow-light);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            transition: var(--transition);
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 15px 0;
         }
         
         .logo {
             font-size: 28px;
             font-weight: bold;
-            color: #c62828;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
         }
         
         .logo span {
-            color: #5d4037;
+            color: var(--secondary-color);
+            margin-left: 5px;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
         }
         
         nav ul {
@@ -63,119 +105,197 @@
         
         nav ul li {
             margin-left: 30px;
+            position: relative;
         }
         
         nav ul li a {
             text-decoration: none;
-            color: #5d4037;
+            color: var(--secondary-color);
             font-weight: 500;
-            transition: color 0.3s;
+            transition: var(--transition);
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
         }
         
         nav ul li a:hover {
-            color: #c62828;
+            color: var(--primary-color);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
         }
         
         .cart-icon {
             position: relative;
             cursor: pointer;
-            color: #5d4037;
+            color: var(--secondary-color);
+            font-size: 24px;
+            transition: var(--transition);
+        }
+        
+        .cart-icon:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
         }
         
         .cart-count {
             position: absolute;
             top: -10px;
             right: -10px;
-            background-color: #388e3c;
-            color: white;
+            background-color: var(--accent-color);
+            color: var(--white);
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         
-        /* Sección de Bienvenida */
+        /* Sección de Bienvenida mejorada */
         .experiences-welcome {
-            padding: 100px 0;
+            padding: 120px 0;
             text-align: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
-            color: white;
+            background-attachment: fixed;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
         }
         
         .experiences-title {
-            font-size: 48px;
+            font-size: 3.5rem;
             margin-bottom: 20px;
-            color: #ffffff;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .experiences-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary-color);
         }
         
         .experiences-subtitle {
-            font-size: 24px;
+            font-size: 1.3rem;
             margin-bottom: 40px;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            font-weight: 300;
+            line-height: 1.8;
         }
         
-        /* Sección de Reseñas */
+        /* Sección de Reseñas mejorada */
         .reviews-section {
-            padding: 80px 0;
-            background-color: #f5f5f5;
+            padding: 100px 0;
+            background-color: var(--light-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 20px auto 0;
+            border-radius: 2px;
         }
         
         .review-form {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            max-width: 800px;
+            background-color: var(--white);
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            max-width: 850px;
             margin: 0 auto;
+            transition: var(--transition);
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+        
+        .review-form:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
         }
         
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            position: relative;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 500;
-            color: #5d4037;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
         }
         
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 16px;
-            transition: border-color 0.3s;
+            transition: var(--transition);
+            background-color: #f9f9f9;
         }
         
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
-            border-color: #c62828;
+            border-color: var(--primary-color);
             outline: none;
+            box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
+            background-color: var(--white);
         }
         
         .form-group textarea {
-            min-height: 150px;
+            min-height: 180px;
             resize: vertical;
         }
         
         .rating {
             display: flex;
-            gap: 10px;
+            gap: 5px;
             margin-bottom: 10px;
-            direction: rtl; /* Para que las estrellas aparezcan de derecha a izquierda y el hover funcione correctamente */
-            justify-content: flex-end; /* Alinear a la derecha para que la primera estrella sea 1 */
+            direction: rtl;
+            justify-content: flex-end;
         }
         
         .rating input {
@@ -183,76 +303,131 @@
         }
         
         .rating label {
-            font-size: 30px;
+            font-size: 36px;
             color: #ddd;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: var(--transition);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
         
         .rating input:checked ~ label {
             color: #ffc107;
+            text-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
         }
         
         .rating label:hover,
         .rating label:hover ~ label {
             color: #ffc107;
+            transform: scale(1.2);
         }
         
         .submit-btn {
-            background-color: #c62828;
-            color: white;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
             border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 18px;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
             display: block;
-            margin: 30px auto 0;
+            margin: 40px auto 0;
             width: 100%;
-            max-width: 300px;
+            max-width: 320px;
+            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
         }
         
         .submit-btn:hover {
-            background-color: #b71c1c;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(198, 40, 40, 0.4);
         }
         
-        /* Estilos para el mensaje de éxito */
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        
+        .submit-btn:active {
+            transform: translateY(-2px);
+        }
+        
+        /* Estilos para el mensaje de éxito mejorado */
         #success-message-container {
-            display: none; /* Oculto por defecto */
+            display: none;
             text-align: center;
-            padding: 60px 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 70px 30px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
             max-width: 800px;
             margin: 0 auto;
+            animation: fadeIn 0.8s ease-out;
         }
 
         #success-message-container h2 {
-            color: #388e3c; /* Verde para el éxito */
-            font-size: 36px;
+            color: var(--accent-color);
+            font-size: 2.5rem;
             margin-bottom: 20px;
         }
 
         #success-message-container p {
-            font-size: 18px;
-            color: #5d4037;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        #success-message-container a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        #success-message-container a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        #success-message-container a:hover {
+            color: var(--primary-dark);
+        }
+        
+        #success-message-container a:hover::after {
+            width: 100%;
         }
 
-        /* Animación de la palomita (checkmark) */
+        /* Animación de la palomita mejorada */
         .checkmark-circle {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             position: relative;
             stroke-width: 5;
-            stroke: #388e3c; /* Verde para la palomita */
+            stroke: var(--accent-color);
             fill: none;
             margin: 0 auto 30px;
             animation: scaleCheckmark 0.6s ease-in-out;
+            filter: drop-shadow(0 3px 5px rgba(56, 142, 60, 0.3));
         }
 
         .checkmark-circle circle {
@@ -260,7 +435,7 @@
             stroke-dashoffset: 166;
             stroke-width: 5;
             stroke-miterlimit: 10;
-            stroke: #388e3c;
+            stroke: var(--accent-color);
             fill: none;
             animation: strokeCheckmark 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
         }
@@ -269,7 +444,7 @@
             transform-origin: 50% 50%;
             stroke-dasharray: 48;
             stroke-dashoffset: 48;
-            animation: strokeCheckmark 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; /* Retraso para que aparezca después del círculo */
+            animation: strokeCheckmark 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
         }
 
         @keyframes strokeCheckmark {
@@ -280,25 +455,45 @@
             0%, 100% { transform: none; }
             50% { transform: scale3d(1.1, 1.1, 1); }
         }
-
-        /* Footer */
+        
+        /* Footer mejorado */
         footer {
-            background-color: #424242;
-            color: white;
-            padding: 60px 0 20px;
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 70px 0 25px;
+            position: relative;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
         }
         
         .footer-column h3 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: #c62828;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .footer-column p, 
+        .footer-column li {
+            color: var(--text-light);
+            margin-bottom: 12px;
+            line-height: 1.6;
         }
         
         .footer-column ul {
@@ -306,68 +501,186 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+        
+        .footer-column ul li:hover {
+            transform: translateX(5px);
         }
         
         .footer-column ul li a {
-            color: #e0e0e0;
+            color: var(--text-light);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
+            display: inline-block;
         }
         
         .footer-column ul li a:hover {
-            color: #c62828;
+            color: var(--primary-color);
+            transform: translateX(5px);
         }
         
         .social-icons {
             display: flex;
-            gap: 15px;
+            gap: 20px;
+            margin-top: 20px;
         }
         
         .social-icons a {
-            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
             font-size: 20px;
-            transition: color 0.3s;
+            border-radius: 50%;
+            transition: var(--transition);
         }
         
         .social-icons a:hover {
-            color: #c62828;
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-5px);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #616161;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #bdbdbd;
+            font-size: 0.9rem;
         }
         
-        /* Responsive */
+        /* Efectos de scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Mejoras de accesibilidad */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Focus visible para mejor accesibilidad */
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        select:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+        
+        /* Responsive mejorado */
+        @media (max-width: 992px) {
+            .experiences-title {
+                font-size: 2.8rem;
+            }
+            
+            .experiences-subtitle {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+            
+            .review-form {
+                padding: 35px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 text-align: center;
+                padding: 15px 0;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
             }
             
             nav ul {
-                margin-top: 20px;
+                margin-top: 15px;
                 justify-content: center;
                 flex-wrap: wrap;
             }
             
             nav ul li {
-                margin: 10px;
+                margin: 8px 15px;
+            }
+            
+            .experiences-welcome {
+                padding: 80px 0;
+                background-attachment: scroll;
             }
             
             .experiences-title {
-                font-size: 36px;
+                font-size: 2.2rem;
             }
             
-            .experiences-subtitle {
-                font-size: 18px;
+            .section-title {
+                font-size: 2rem;
             }
             
             .review-form, #success-message-container {
-                padding: 20px;
+                padding: 25px 20px;
+            }
+            
+            .rating label {
+                font-size: 30px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .experiences-title {
+                font-size: 1.8rem;
+            }
+            
+            .experiences-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .submit-btn {
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
+            
+            .rating label {
+                font-size: 28px;
+            }
+            
+            .checkmark-circle {
+                width: 100px;
+                height: 100px;
             }
         }
     </style>
@@ -377,7 +690,9 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">El Club <span>Umami</span></div>
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>El Club <span>Umami</span>
+                </div>
                 <nav>
                     <ul>
                         <li><a href="#">Inicio</a></li>
@@ -387,7 +702,7 @@
                     </ul>
                 </nav>
                 <div class="cart-icon" id="cart-icon">
-                    🛒
+                    <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
                 </div>
             </div>
@@ -405,10 +720,7 @@
     <!-- Sección de Reseñas -->
     <section class="reviews-section">
         <div class="container">
-            <h2 class="section-title" style="text-align: center; margin-bottom: 50px; font-size: 36px; color: #5d4037; position: relative;">
-                Comparte tu Experiencia
-                <span style="content: ''; display: block; width: 80px; height: 3px; background-color: #c62828; margin: 15px auto 0;"></span>
-            </h2>
+            <h2 class="section-title">Comparte tu Experiencia</h2>
             
             <div class="review-form" id="review-form-container">
                 <form id="experience-form">
@@ -485,7 +797,7 @@
                 </svg>
                 <h2>¡Gracias por tu reseña!</h2>
                 <p>Tu opinión es muy valiosa para nosotros y nos ayuda a mejorar.</p>
-                <p>Puedes ver todas las reseñas en nuestra <a href="Reseñas.html" style="color: #c62828; text-decoration: none; font-weight: bold;">página de reseñas</a>.</p>
+                <p>Puedes ver todas las reseñas en nuestra <a href="Reseñas.html">página de reseñas</a>.</p>
             </div>
         </div>
     </section>
@@ -497,6 +809,12 @@
                 <div class="footer-column">
                     <h3>El Club Umami</h3>
                     <p>Donde el quinto sabor se convierte en una experiencia.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
                 </div>
                 <div class="footer-column">
                     <h3>Explorar</h3>
@@ -510,9 +828,9 @@
                 <div class="footer-column">
                     <h3>Contacto</h3>
                     <ul>
-                        <li>Dirección: Av. Umami 123, Madrid</li>
-                        <li>Teléfono: +34 919 876 543</li>
-                        <li>Email: experiencia@clubumami.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Umami 123, Madrid</li>
+                        <li><i class="fas fa-phone"></i> +34 919 876 543</li>
+                        <li><i class="fas fa-envelope"></i> experiencia@clubumami.com</li>
                     </ul>
                 </div>
                 <div class="footer-column">
