@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -75,9 +75,10 @@
         
         .header-content {
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* MODIFICADO: Centra los elementos horizontalmente */
             align-items: center;
             padding: 15px 0;
+            gap: 40px; /* AÑADIDO: Espacio entre los elementos del encabezado */
         }
         
         .logo {
@@ -603,14 +604,15 @@
                 flex-direction: column;
                 text-align: center;
                 padding: 15px 0;
+                gap: 20px; /* Ajuste de espacio para móviles */
             }
             
             .logo {
-                margin-bottom: 15px;
+                margin-bottom: 0; /* Ajustado para que el gap del padre controle el espacio */
             }
             
             nav ul {
-                margin-top: 15px;
+                margin-top: 0; /* Ya no es necesario margin-top si el gap maneja el espacio */
                 justify-content: center;
                 flex-wrap: wrap;
             }
