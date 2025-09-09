@@ -41,9 +41,10 @@
         
         .header-content {
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* MODIFICADO: Centra los elementos horizontalmente */
             align-items: center;
             padding: 20px 0;
+            gap: 40px; /* AÑADIDO: Espacio entre los elementos del encabezado */
         }
         
         .logo {
@@ -227,10 +228,11 @@
             .header-content {
                 flex-direction: column;
                 text-align: center;
+                gap: 20px; /* AÑADIDO: Espacio entre los elementos cuando se apilan */
             }
             
             nav ul {
-                margin-top: 20px;
+                margin-top: 0; /* MODIFICADO: Ya no es necesario margin-top si el gap maneja el espacio */
                 justify-content: center;
                 flex-wrap: wrap;
             }
