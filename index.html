@@ -6,6 +6,7 @@
     <title>Le Club Umami - Donde el quinto sabor se convierte en experiencia</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Añadido para los iconos -->
     <style>
         /* Variables CSS para consistencia */
         :root {
@@ -111,21 +112,51 @@
 
         /* Encabezado */
         header {
-            transition: var(--transition-default);
+            background-color: #ffffff; /* Sólido como en las otras páginas */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: var(--transition-default); /* Añadido para consistencia */
         }
 
-        header.scrolled {
-            box-shadow: var(--shadow-default);
+        .header-content { /* Clase unificada para el contenido del encabezado */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0; /* Unificado el padding */
+            gap: 40px; /* Unificado el espacio */
+        }
+
+        .logo { /* Estilo unificado para el logo */
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--color-red-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .logo span {
+            color: var(--color-brown);
+            margin-left: 5px;
+        }
+        .logo i { /* Estilo para el icono del logo */
+            margin-right: 10px;
+            font-size: 32px;
         }
 
         nav ul li a {
             position: relative;
+            color: var(--color-brown); /* Asegura que el color base sea el correcto */
+            font-weight: 500; /* Corregido de 'font-medium' a 'font-weight' y valor numérico */
+            transition: var(--transition-default); /* Asegura la transición */
+            padding: 5px 0; /* Añadido para consistencia con hover effect */
         }
 
         nav ul li a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0; /* Ajustado para que la línea esté debajo */
             left: 0;
             width: 0;
             height: 2px;
@@ -135,6 +166,9 @@
 
         nav ul li a:hover::after {
             width: 100%;
+        }
+        nav ul li a:hover { /* Añadido para consistencia de hover */
+            color: var(--color-red-primary);
         }
 
         /* Hero Section */
@@ -204,7 +238,7 @@
             padding: 0.75rem 2rem;
             font-size: 1rem;
             line-height: 1.5;
-            borderRadius: 50px;
+            border-radius: 50px; /* Corregido: 'borderRadius' a 'border-radius' */
             transition: var(--transition-default);
             cursor: pointer;
         }
@@ -268,6 +302,17 @@
                 width: 70px;
                 height: 70px;
             }
+            /* Estilos para móviles del encabezado */
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            nav ul {
+                margin-top: 0;
+            }
+            .cart-icon { /* Reset margin-left auto for mobile if it was there */
+                margin-left: 0; 
+            }
         }
 
         @media (max-width: 480px) {
@@ -301,22 +346,61 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Estilos para el carrito */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            color: var(--color-brown);
+            font-size: 1.5rem; /* Ajustado para que sea visible y coherente con el tamaño de los iconos */
+            /* margin-left: auto; REMOVIDO: el gap del padre maneja el espacio */
+            transition: var(--transition-default); /* Añadido para consistencia */
+        }
+        .cart-icon:hover { /* Añadido para consistencia */
+            color: var(--color-red-primary);
+            transform: translateY(-2px);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #388e3c; /* Green color */
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold; /* Añadido para consistencia */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Añadido para consistencia */
+        }
     </style>
 </head>
 <body class="bg-beige">
     <!-- Encabezado -->
     <header class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-5 py-4 flex flex-col md:flex-row md:justify-center items-center md:gap-x-12">
-            <div class="text-3xl font-bold text-red-primary">Le Club <span class="text-brown">Umami</span></div>
-            <nav class="mt-4 md:mt-0">
-                <ul class="flex flex-wrap justify-center text-lg gap-4 md:gap-8 list-none">
-                    <li><a href="#" class="text-brown font-medium hover:text-red-primary transition-colors duration-300">Inicio</a></li>
-                    <li><a href="#" class="text-brown font-medium hover:text-red-primary transition-colors duration-300">Menú</a></li>
-                    <li><a href="#" class="text-brown font-medium hover:text-red-primary transition-colors duration-300">Experiencias</a></li>
-                    <li><a href="#" class="text-brown font-medium hover:text-red-primary transition-colors duration-300">Club VIP</a></li>
-                    <li><a href="#" class="text-brown font-medium hover:text-red-primary transition-colors duration-300">Reservas</a></li>
-                </ul>
-            </nav>
+        <div class="container mx-auto px-5">
+            <div class="header-content"> <!-- Contenido del encabezado unificado -->
+                <a href="index.html" class="logo">
+                    <i class="fas fa-utensils"></i>Le Club <span>Umami</span>
+                </a>
+                <nav class="mt-4 md:mt-0">
+                    <ul class="flex flex-wrap justify-center text-lg gap-4 md:gap-8 list-none">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="Menu.html">Menú</a></li>
+                        <li><a href="Experiencia.html">Experiencias</a></li>
+                        <li><a href="Club-VIP.html">Club VIP</a></li>
+                        <li><a href="Resenas.html">Reseñas</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cart-icon">
+                    🛒
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -494,8 +578,8 @@
             <h2 class="text-4xl font-bold mb-4">¿Listo para una experiencia umami?</h2>
             <p class="text-lg mb-8">Únete a nuestro club exclusivo y descubre un mundo de sabores, eventos especiales y experiencias gastronómicas que transformarán tu paladar para siempre.</p>
             <div class="cta-buttons flex flex-col md:flex-row justify-center gap-4">
-                <a href="#" class="btn btn-primary">Hazte miembro VIP</a>
-                <a href="#" class="btn btn-outline">Reserva tu mesa</a>
+                <a href="Club-VIP.html" class="btn btn-primary">Hazte miembro VIP</a>
+                <a href="#about" class="btn btn-outline">Reserva tu mesa</a>
             </div>
         </div>
     </section>
@@ -511,10 +595,11 @@
                 <div class="footer-column">
                     <h3 class="text-2xl font-bold mb-5 text-red-primary">Explorar</h3>
                     <ul class="list-none">
-                        <li class="mb-2"><a href="#" class="text-gray-300 hover:text-red-primary transition-colors duration-300">Inicio</a></li>
-                        <li class="mb-2"><a href="#" class="text-gray-300 hover:text-red-primary transition-colors duration-300">Menú</a></li>
-                        <li class="mb-2"><a href="#" class="text-gray-300 hover:text-red-primary transition-colors duration-300">Experiencias</a></li>
-                        <li class="mb-2"><a href="#" class="text-gray-300 hover:text-red-primary transition-colors duration-300">Club VIP</a></li>
+                        <li class="mb-2"><a href="index.html" class="text-gray-300 hover:text-red-primary transition-colors duration-300">Inicio</a></li>
+                        <li class="mb-2"><a href="Menu.html" class="text-gray-300 hover:text-red-primary transition-colors duration-300">Menú</a></li>
+                        <li class="mb-2"><a href="Experiencia.html" class="text-gray-300 hover:text-red-primary transition-colors duration-300">Experiencias</a></li>
+                        <li class="mb-2"><a href="Club-VIP.html" class="text-gray-300 hover:text-red-primary transition-colors duration-300">Club VIP</a></li>
+                        <li class="mb-2"><a href="Resenas.html" class="text-gray-300 hover:text-red-primary transition-colors duration-300">Reseñas</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
