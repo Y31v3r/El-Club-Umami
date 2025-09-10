@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experiencias - El Club Umami</title>
+    <title>Experiencias - Le Club Umami</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -75,10 +75,10 @@
         
         .header-content {
             display: flex;
-            justify-content: center; /* MODIFICADO: Centra los elementos horizontalmente */
+            justify-content: center;
             align-items: center;
-            padding: 15px 0;
-            gap: 40px; /* AÑADIDO: Espacio entre los elementos del encabezado */
+            padding: 20px 0; /* Unificado el padding */
+            gap: 40px;
         }
         
         .logo {
@@ -87,6 +87,7 @@
             color: var(--primary-color);
             display: flex;
             align-items: center;
+            text-decoration: none;
         }
         
         .logo span {
@@ -141,7 +142,7 @@
             position: relative;
             cursor: pointer;
             color: var(--secondary-color);
-            font-size: 24px;
+            font-size: 1.5rem; /* Unificado el tamaño del icono del carrito */
             transition: var(--transition);
         }
         
@@ -604,15 +605,15 @@
                 flex-direction: column;
                 text-align: center;
                 padding: 15px 0;
-                gap: 20px; /* Ajuste de espacio para móviles */
+                gap: 20px;
             }
             
             .logo {
-                margin-bottom: 0; /* Ajustado para que el gap del padre controle el espacio */
+                margin-bottom: 0;
             }
             
             nav ul {
-                margin-top: 0; /* Ya no es necesario margin-top si el gap maneja el espacio */
+                margin-top: 0;
                 justify-content: center;
                 flex-wrap: wrap;
             }
@@ -656,6 +657,9 @@
             .social-icons {
                 justify-content: center;
             }
+            .cart-icon { /* Reset margin-left auto for mobile if it was there */
+                margin-left: 0; 
+            }
         }
         
         @media (max-width: 480px) {
@@ -692,15 +696,16 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-utensils"></i>El Club <span>Umami</span>
-                </div>
+                <a href="index.html" class="logo">
+                    <i class="fas fa-utensils"></i>Le Club <span>Umami</span>
+                </a>
                 <nav>
                     <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Menú</a></li>
-                        <li><a href="#">Experiencias</a></li>
-                        <li><a href="#">Club VIP</a></li>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="Menu.html">Menú</a></li>
+                        <li><a href="Experiencia.html">Experiencias</a></li>
+                        <li><a href="Club-VIP.html">Club VIP</a></li>
+                        <li><a href="Resenas.html">Reseñas</a></li>
                     </ul>
                 </nav>
                 <div class="cart-icon" id="cart-icon">
@@ -799,7 +804,7 @@
                 </svg>
                 <h2>¡Gracias por tu reseña!</h2>
                 <p>Tu opinión es muy valiosa para nosotros y nos ayuda a mejorar.</p>
-                <p>Puedes ver todas las reseñas en nuestra <a href="Reseñas.html">página de reseñas</a>.</p>
+                <p>Puedes ver todas las reseñas en nuestra <a href="Resenas.html">página de reseñas</a>.</p>
             </div>
         </div>
     </section>
@@ -809,7 +814,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>El Club Umami</h3>
+                    <h3>Le Club Umami</h3>
                     <p>Donde el quinto sabor se convierte en una experiencia.</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -821,10 +826,11 @@
                 <div class="footer-column">
                     <h3>Explorar</h3>
                     <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Menú</a></li>
-                        <li><a href="#">Experiencias</a></li>
-                        <li><a href="#">Club VIP</a></li>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="Menu.html">Menú</a></li>
+                        <li><a href="Experiencia.html">Experiencias</a></li>
+                        <li><a href="Club-VIP.html">Club VIP</a></li>
+                        <li><a href="Resenas.html">Reseñas</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -845,7 +851,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 El Club Umami. Todos los derechos reservados.</p>
+                <p>&copy; 2023 Le Club Umami. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
