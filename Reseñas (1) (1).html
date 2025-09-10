@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reseñas - Le Club Umami</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Añadido para los iconos -->
     <style>
         /* Estilos generales */
         * {
@@ -37,24 +38,33 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: all 0.3s ease; /* Añadido para consistencia */
         }
         
         .header-content {
             display: flex;
-            justify-content: center; /* MODIFICADO: Centra los elementos horizontalmente */
+            justify-content: center;
             align-items: center;
             padding: 20px 0;
-            gap: 40px; /* AÑADIDO: Espacio entre los elementos del encabezado */
+            gap: 40px;
         }
         
         .logo {
             font-size: 28px;
             font-weight: bold;
             color: #c62828;
+            text-decoration: none;
+            display: flex; /* Añadido para el icono */
+            align-items: center; /* Añadido para el icono */
         }
         
         .logo span {
             color: #5d4037;
+            margin-left: 5px; /* Añadido para separación del icono */
+        }
+        .logo i { /* Estilo para el icono del logo */
+            margin-right: 10px;
+            font-size: 32px;
         }
         
         nav ul {
@@ -64,6 +74,7 @@
         
         nav ul li {
             margin-left: 30px;
+            position: relative; /* Añadido para la línea de hover */
         }
         
         nav ul li a {
@@ -71,16 +82,36 @@
             color: #5d4037;
             font-weight: 500;
             transition: color 0.3s;
+            padding: 5px 0; /* Añadido para la línea de hover */
+        }
+        nav ul li a::after { /* Añadido para la línea de hover */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #c62828;
+            transition: all 0.3s ease;
         }
         
         nav ul li a:hover {
             color: #c62828;
+        }
+        nav ul li a:hover::after { /* Añadido para la línea de hover */
+            width: 100%;
         }
         
         .cart-icon {
             position: relative;
             cursor: pointer;
             color: #5d4037;
+            font-size: 1.5rem; /* Ajustado para que sea visible y coherente con el tamaño de los iconos */
+            transition: all 0.3s ease; /* Añadido para consistencia */
+        }
+        .cart-icon:hover { /* Añadido para consistencia */
+            color: #c62828;
+            transform: translateY(-2px);
         }
         
         .cart-count {
@@ -96,6 +127,8 @@
             justify-content: center;
             align-items: center;
             font-size: 12px;
+            font-weight: bold; /* Añadido para consistencia */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Añadido para consistencia */
         }
         
         /* Sección de Reseñas */
@@ -313,11 +346,11 @@
             .header-content {
                 flex-direction: column;
                 text-align: center;
-                gap: 20px; /* Ajuste de espacio para móviles */
+                gap: 20px;
             }
             
             nav ul {
-                margin-top: 0; /* Ya no es necesario margin-top si el gap maneja el espacio */
+                margin-top: 0;
                 justify-content: center;
                 flex-wrap: wrap;
             }
@@ -344,6 +377,9 @@
                 flex-direction: column;
                 gap: 20px;
             }
+            .cart-icon { /* Reset margin-left auto for mobile if it was there */
+                margin-left: 0; 
+            }
         }
     </style>
 </head>
@@ -352,13 +388,16 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Le Club <span>Umami</span></div>
+                <a href="index.html" class="logo">
+                    <i class="fas fa-utensils"></i>Le Club <span>Umami</span>
+                </a>
                 <nav>
                     <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Menú</a></li>
-                        <li><a href="#">Experiencias</a></li>
-                        <li><a href="#">Club VIP</a></li>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="Menu.html">Menú</a></li>
+                        <li><a href="Experiencia.html">Experiencias</a></li>
+                        <li><a href="Club-VIP.html">Club VIP</a></li>
+                        <li><a href="Resenas.html">Reseñas</a></li>
                     </ul>
                 </nav>
                 <div class="cart-icon" id="cart-icon">
@@ -424,10 +463,11 @@
                 <div class="footer-column">
                     <h3>Explorar</h3>
                     <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Menú</a></li>
-                        <li><a href="#">Experiencias</a></li>
-                        <li><a href="#">Club VIP</a></li>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="Menu.html">Menú</a></li>
+                        <li><a href="Experiencia.html">Experiencias</a></li>
+                        <li><a href="Club-VIP.html">Club VIP</a></li>
+                        <li><a href="Resenas.html">Reseñas</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -473,26 +513,20 @@
         const db = getFirestore(app);
 
         document.addEventListener('DOMContentLoaded', function() {
-            const reviewsListContainer = document.getElementById('reviewsList'); // Usamos ID para ser más específicos
+            const reviewsListContainer = document.getElementById('reviewsList');
             const filterButtons = document.querySelectorAll('.filter-btn');
 
-            let allReviews = []; // Para almacenar todas las reseñas fetched y permitir el filtrado
+            let allReviews = [];
 
-            // Elementos donde se mostrarán las estadísticas (ahora usando IDs)
             const avgRatingElem = document.getElementById('avgRating');
             const totalReviewsElem = document.getElementById('totalReviews');
             const recommendPercentElem = document.getElementById('recommendPercent');
 
-            // --- DEPURACIÓN: Verifica que los elementos se encuentren ---
-            console.log("Elementos de estadísticas (al cargar):", { avgRatingElem, totalReviewsElem, recommendPercentElem });
-            // -----------------------------------------------------------
-
-            // Función para obtener las reseñas de Firestore
             async function fetchReviews() {
                 reviewsListContainer.innerHTML = '<p style="text-align: center; margin-top: 50px;">Cargando reseñas...</p>';
                 try {
                     const reviewsCol = collection(db, 'reviews');
-                    const q = query(reviewsCol, orderBy('timestamp', 'desc')); // Ordenar por más recientes
+                    const q = query(reviewsCol, orderBy('timestamp', 'desc'));
                     const querySnapshot = await getDocs(q);
 
                     allReviews = [];
@@ -501,19 +535,16 @@
                         allReviews.push({ id: doc.id, ...reviewData });
                     });
                     
-                    console.log("Reseñas obtenidas de Firebase:", allReviews); // DEPURACIÓN: Muestra todas las reseñas
-                    
-                    renderReviews(allReviews); // Renderiza todas las reseñas al inicio
-                    updateStats(allReviews); // ¡Actualiza las estadísticas con todas las reseñas!
+                    renderReviews(allReviews);
+                    updateStats(allReviews);
                 } catch (e) {
                     console.error("Error al obtener documentos de Firebase: ", e);
                     reviewsListContainer.innerHTML = '<p style="text-align: center; margin-top: 50px;">Error al cargar las reseñas. Por favor, inténtalo de nuevo más tarde.</p>';
                 }
             }
 
-            // Función para renderizar las reseñas en la página
             function renderReviews(reviewsToRender) {
-                reviewsListContainer.innerHTML = ''; // Limpia las reseñas existentes antes de renderizar
+                reviewsListContainer.innerHTML = '';
                 if (reviewsToRender.length === 0) {
                     reviewsListContainer.innerHTML = '<p style="text-align: center; margin-top: 50px;">No hay reseñas para mostrar con estos filtros.</p>';
                     return;
@@ -524,24 +555,21 @@
                     reviewCard.classList.add('review-card');
 
                     let displayDate = 'Fecha no disponible';
-                    // Intentar formatear desde timestamp de Firebase primero
                     if (review.timestamp && review.timestamp.toDate) {
                         const date = review.timestamp.toDate();
                         displayDate = date.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
                     } 
-                    // Si no hay timestamp de Firebase o no es válido, usar visitDate
                     else if (review.visitDate) {
                         const parts = review.visitDate.split('-');
                         if (parts.length === 3) {
-                             const dateObj = new Date(parts[0], parts[1] - 1, parts[2]); // Meses son 0-index
+                             const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
                              displayDate = dateObj.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
                         } else {
-                            // En caso de que visitDate no tenga el formato esperado, mostrarlo tal cual
                             displayDate = review.visitDate; 
                         }
                     }
 
-                    const stars = '★'.repeat(review.rating || 0) + '☆'.repeat(5 - (review.rating || 0)); // Asegura que 'rating' sea un número
+                    const stars = '★'.repeat(review.rating || 0) + '☆'.repeat(5 - (review.rating || 0));
                     const reviewerInitial = review.reviewerName ? review.reviewerName.charAt(0).toUpperCase() : '?';
                     const formattedDishes = review.dishes && review.dishes.length > 0
                         ? review.dishes.map(dish => {
@@ -578,10 +606,7 @@
                 });
             }
 
-            // Función para actualizar las estadísticas de reseñas
             function updateStats(reviews) {
-                console.log("Calculando estadísticas con:", reviews); // DEPURACIÓN: Muestra qué reseñas se usan para las stats
-
                 if (reviews.length === 0) {
                     avgRatingElem.textContent = '0.0';
                     totalReviewsElem.textContent = '0';
@@ -598,11 +623,8 @@
                 avgRatingElem.textContent = averageRating;
                 totalReviewsElem.textContent = totalReviews;
                 recommendPercentElem.textContent = recommendationPercentage;
-
-                console.log("Estadísticas actualizadas:", { averageRating, totalReviews, recommendationPercentage }); // DEPURACIÓN
             }
 
-            // Funcionalidad para los filtros
             filterButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     filterButtons.forEach(btn => btn.classList.remove('active'));
@@ -612,18 +634,15 @@
                     let filteredReviews = [];
 
                     if (filterType === 'all' || filterType === 'recent') {
-                        filteredReviews = allReviews; // Muestra todas las reseñas cargadas (que ya están ordenadas por recientes)
-                    } else { // Filtro por estrellas (5, 4, 3)
+                        filteredReviews = allReviews;
+                    } else {
                         const stars = parseInt(filterType);
                         filteredReviews = allReviews.filter(review => review.rating === stars);
                     }
                     renderReviews(filteredReviews);
-                    // Las estadísticas globales (arriba) no se actualizan con los filtros individuales,
-                    // ya que suelen representar el total del restaurante.
                 });
             });
 
-            // Carga las reseñas y actualiza las estadísticas cuando la página se carga
             fetchReviews();
         });
     </script>
