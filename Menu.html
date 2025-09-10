@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Club Umami - Menú Gastronómico</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Añadido para los iconos -->
     <style>
         /* Estilos generales */
         * {
@@ -37,23 +38,33 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: all 0.3s ease; /* Añadido para consistencia */
         }
         
         .header-content {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 20px 0;
+            gap: 40px;
         }
         
         .logo {
             font-size: 28px;
             font-weight: bold;
             color: #c62828;
+            text-decoration: none;
+            display: flex; /* Añadido para el icono */
+            align-items: center; /* Añadido para el icono */
         }
         
         .logo span {
             color: #5d4037;
+            margin-left: 5px; /* Añadido para separación del icono */
+        }
+        .logo i { /* Estilo para el icono del logo */
+            margin-right: 10px;
+            font-size: 32px;
         }
         
         nav ul {
@@ -63,6 +74,7 @@
         
         nav ul li {
             margin-left: 30px;
+            position: relative; /* Añadido para la línea de hover */
         }
         
         nav ul li a {
@@ -70,16 +82,36 @@
             color: #5d4037;
             font-weight: 500;
             transition: color 0.3s;
+            padding: 5px 0; /* Añadido para la línea de hover */
+        }
+        nav ul li a::after { /* Añadido para la línea de hover */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #c62828;
+            transition: all 0.3s ease;
         }
         
         nav ul li a:hover {
             color: #c62828;
+        }
+        nav ul li a:hover::after { /* Añadido para la línea de hover */
+            width: 100%;
         }
         
         .cart-icon {
             position: relative;
             cursor: pointer;
             color: #5d4037;
+            font-size: 1.5rem; /* Ajustado para que sea visible y coherente con el tamaño de los iconos */
+            transition: all 0.3s ease; /* Añadido para consistencia */
+        }
+        .cart-icon:hover { /* Añadido para consistencia */
+            color: #c62828;
+            transform: translateY(-2px);
         }
         
         .cart-count {
@@ -95,6 +127,8 @@
             justify-content: center;
             align-items: center;
             font-size: 12px;
+            font-weight: bold; /* Añadido para consistencia */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Añadido para consistencia */
         }
         
         /* Hero Section */
@@ -513,13 +547,16 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Le Club <span>Umami</span></div>
+                <a href="index.html" class="logo">
+                    <i class="fas fa-utensils"></i>Le Club <span>Umami</span>
+                </a>
                 <nav>
                     <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Menú</a></li>
-                        <li><a href="#">Experiencias</a></li>
-                        <li><a href="#">Club VIP</a></li>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="Menu.html">Menú</a></li>
+                        <li><a href="Experiencia.html">Experiencias</a></li>
+                        <li><a href="Club-VIP.html">Club VIP</a></li>
+                        <li><a href="Resenas.html">Reseñas</a></li>
                     </ul>
                 </nav>
                 <div class="cart-icon" id="cart-icon">
@@ -703,10 +740,11 @@
                 <div class="footer-column">
                     <h3>Explorar</h3>
                     <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Menú</a></li>
-                        <li><a href="#">Experiencias</a></li>
-                        <li><a href="#">Club VIP</a></li>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="Menu.html">Menú</a></li>
+                        <li><a href="Experiencia.html">Experiencias</a></li>
+                        <li><a href="Club-VIP.html">Club VIP</a></li>
+                        <li><a href="Resenas.html">Reseñas</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
